@@ -19,7 +19,11 @@ use App\Http\Controllers\AdminController;
 |
 */
 
+
 Route::resource('/backend', AdminController::class);
+
+
+Route::get('/admin/gen/{genre}', [AdminController::class, 'albumByGenre'])->name('albums.gen');
 
 Route::redirect('/', '/home');
 Route::resource('/home', HomeController::class);

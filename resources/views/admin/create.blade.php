@@ -20,43 +20,39 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="lastname" class="control-label">Artist:</label>
-                        <input type="text" name="position" class="form-control" id="lastname" placeholder="Artist">
+                        <input type="text" name="artist" class="form-control" id="lastname" placeholder="Artist">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="lastname" class="control-label">Genre:</label>
                         <select class="form-control" name="genre" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            @foreach($genres as $gen)
+                                <option value="{{$gen->id}}">{{$gen->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="lastname" class="control-label">Tag:</label>
-                        <select class="form-control" name="genre" id="exampleFormControlSelect1">
-                            <option>New release</option>
-                            <option>Soundtracks</option>
-                            <option>Dance feel</option>
-                            <option>Podcasts</option>
-                            <option>Sport</option>
+                        <select class="form-control" name="tag" id="exampleFormControlSelect1">
+                            @foreach($tags as $tag)
+                                <option value="{{$tag->id}}">#{{$tag->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="lastname" class="control-label">Year</label>
-                        <input type="text" name="salary" class="form-control" id="lastname" placeholder="Year">
+                        <input type="text" name="year" class="form-control" id="lastname" placeholder="Year">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Album cover</label>
-                        <input type="file" class="form-control-file" id="image" name="image">
+                        <input type="file" class="form-control-file" id="image" name="cover">
                     </div>
                 </div>
             </div>
