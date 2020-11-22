@@ -52,46 +52,21 @@
         <div class="track__block">
             <div class="row">
                 <div class="col-lg-2">
-                    <p class="chart__title">Chart</p>
+                    <p class="chart__title">Tag</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="tracks">
-                        <div class="tracks__item">
-                            <img src="/assets/img/track1.png" alt="">
-                            <p>Top worldwide</p>
-                            <p class="track__text">100 tracks - 600,669 fans</p>
+                @for ($i = 0; $i < 4; $i++)
+                    <div class="col-lg-3">
+                        <div class="tracks">
+                            <div class="tracks__item">
+                                <img src="/assets/img/track1.png" alt="">
+                                <p>Name - Artist</p>
+                                <p class="track__text">100 tracks - 600,669 fans</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="tracks">
-                        <div class="tracks__item">
-                            <img src="/assets/img/track2.png" alt="">
-                            <p>Top worldwide</p>
-                            <p class="track__text">100 tracks - 600,669 fans</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="tracks">
-                        <div class="tracks__item">
-                            <img src="/assets/img/track3.png" alt="">
-                            <p>Top worldwide</p>
-                            <p class="track__text">100 tracks - 600,669 fans</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="tracks">
-                        <div class="tracks__item">
-                            <img src="/assets/img/track4.png" alt="">
-                            <p>Top worldwide</p>
-                            <p class="track__text">100 tracks - 600,669 fans</p>
-                        </div>
-                    </div>
-                </div>
+                @endfor
             </div>
         </div>
         <div class="track__block">
@@ -182,7 +157,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </section>

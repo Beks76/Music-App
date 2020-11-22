@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <a href="{{ route('home.index') }}" class="logo">Issabekradio</a>
+                <a href="{{ route('home.index') }}" class="logo">{{ config('app.name') }}</a>
             </div>
             @if (Auth::check())
                 <div class="col-lg-5 ml-auto">
@@ -15,11 +15,11 @@
                                 <a href="devices.html">Devices</a>
                             </li>
                             <li class="menu__item">
-                                <a href="devices.html">Profile</a>
-                            </li>
-                            <li class="menu__item">
                                 <a href="devices.html">{{ Auth::user()->getNameOrUsername() }}</a>
-                            </li>   
+                            </li>  
+                            <li class="menu__item">
+                                <a href="{{ route('auth.logout') }}">Log out</a>
+                            </li> 
                         </ul>
                     </nav>
                 </div>

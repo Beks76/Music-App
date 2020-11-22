@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\ChartController;
+
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +19,17 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+Route::resource('/backend', AdminController::class);
+
 Route::redirect('/', '/home');
 Route::resource('/home', HomeController::class);
 
-Route::resource('/chart', ChartController::class);
+Route::get('/chart', [ChartController::class, 'index']);
 
 Route::get('/signin', [AuthController::class, 'getSignin'])->name('auth.signin');
 Route::post('/signin', [AuthController::class, 'postSignin'])->name('auth.postSignin');
 Route::get('/signup', [AuthController::class, 'getSignup'])->name('auth.signup');
 Route::post('/signup', [AuthController::class, 'store'])->name('auth.store');
+Route::get('/logout', [AuthController::class, 'getLogOut'])->name('auth.logout');
+
+

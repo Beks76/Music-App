@@ -50,6 +50,13 @@ class AuthController extends Controller
         return redirect()->route('home.index')->with('success', 'You are registered!');
     }
 
+    public function getLogOut()
+    {
+        Auth::logout();
+
+        return redirect()->route('home.index');
+    }
+
     // protected function validatedData() 
     // {
     //     return request()->validate([
