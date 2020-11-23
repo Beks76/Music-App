@@ -10,7 +10,7 @@
             <div class="col-lg-2">
                 <p class="chart__title">Charts</p>
             </div>
-        </div> 
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <p class="chart__subtitle">Today's top tracks</p>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 </section>
 
@@ -62,7 +62,7 @@
                             <div class="col-lg-3">
                                 <div class="tracks">
                                     <div class="tracks__item">
-                                        <img src="/storage/{{ $album->cover }}" alt="">
+                                        <img src="{{ $album->cover }}" alt="">
                                         <p class="track__text">
                                             @foreach ($album->tags()->get() as $tag)
                                                <a href=""> #{{$tag->name}}</a>
@@ -166,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div> --}}
     </div>
 </section>

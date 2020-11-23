@@ -5,12 +5,12 @@
 @section('content')
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <h3>Add album</h3>
         </div>
         <form action="{{ route('backend.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-md-3">
                     <div class="form-group form-group-sm">
                         <label for="firstname" class="control-label">Name:</label>
@@ -56,11 +56,13 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mt-5">
                 <div class="col-xs-3">
                     <button type="submit" class="btn btn-default">Submit</button>
                 </div>
+
             </div>
+            <br>
         </form>
         </div>
     </div>

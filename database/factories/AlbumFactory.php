@@ -26,7 +26,8 @@ class AlbumFactory extends Factory
             'name'=> $this->faker->sentence(2),
             'artist'=> $this->faker->name,
             'year'=> $this->faker->year,
-            'genre_id' => Genre::pluck('id')->random()
+            'genre_id' => Genre::pluck('id')->random(),
+            'cover'=> 'https://placeimg.com/265/265/any?' . rand(1, 100)
         ];
     }
 }

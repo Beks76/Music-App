@@ -11,10 +11,12 @@
         <div class="row mt-3">
             <div class="col-md-12">
                 <div class="col-md-12">
-                    <div class="col-md-12 text-center">
+                    <div class="col-md-6 offset-3 mt-5">
                         <h5>Info Album ID: {{$album->id}} </h5>
                     </div>
-
+                    <div class="col-md-6 offset-4 mt-5">
+                        <img src="{{ $album->cover }}" alt="">
+                    </div>
                     <div class="col-md-6 offset-3 mt-5">
                         <b>Album:</b>
                         <p class="lead">{{$album->name}} - {{$album->artist}} </p>
