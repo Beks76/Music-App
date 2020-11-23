@@ -49,27 +49,36 @@
 
 <section id="track" class="track">
     <div class="container">
-        <div class="track__block">
-            <div class="row">
-                <div class="col-lg-2">
-                    <p class="chart__title">Tag</p>
+        @foreach($genres as $genre)
+            <div class="track__block">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <p class="chart__title">{{ $genre->name }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach($albums as $album)
+                        @if ($genre->id == $album->genre->id)
+                            <div class="col-lg-3">
+                                <div class="tracks">
+                                    <div class="tracks__item">
+                                        <img src="/storage/{{ $album->cover }}" alt="">
+                                        <p class="track__text">
+                                            @foreach ($album->tags()->get() as $tag)
+                                               <a href=""> #{{$tag->name}}</a>
+                                            @endforeach
+                                        </p>
+                                        <p>{{ $album->name }} - {{ $album->artist }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
-            <div class="row">
-                @for ($i = 0; $i < 4; $i++)
-                    <div class="col-lg-3">
-                        <div class="tracks">
-                            <div class="tracks__item">
-                                <img src="/assets/img/track1.png" alt="">
-                                <p>Name - Artist</p>
-                                <p class="track__text">100 tracks - 600,669 fans</p>
-                            </div>
-                        </div>
-                    </div>
-                @endfor
-            </div>
-        </div>
-        <div class="track__block">
+        @endforeach
+
+        {{-- <div class="track__block">
             <div class="row">
                 <div class="col-lg-4">
                     <p class="chart__title">Series soundtracks</p>
@@ -113,8 +122,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="track__block">
+        </div> --}}
+        {{-- <div class="track__block">
             <div class="row">
                 <div class="col-lg-4">
                     <p class="chart__title">Your music therapy</p>
@@ -158,7 +167,7 @@
                     </div>
                 </div>
             </div> 
-        </div>
+        </div> --}}
     </div>
 </section>
 

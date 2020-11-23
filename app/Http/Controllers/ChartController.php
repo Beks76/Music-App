@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
+use App\Models\Tag;
+use App\Models\Genre;
 use Illuminate\Http\Request;
+
 
 class ChartController extends Controller
 {
@@ -13,7 +17,10 @@ class ChartController extends Controller
      */
     public function index()
     {
-        return view('chart.index');
+        $albums = Album::all();
+        $genres = Genre::all();
+        $tags = Tag::all();
+        return view('chart.index', compact(['albums', 'genres', 'tags']));
     }
 
     /**

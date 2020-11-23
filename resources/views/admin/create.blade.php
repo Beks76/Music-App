@@ -8,7 +8,7 @@
         <div class="row">
             <h3>Add album</h3>
         </div>
-        <form action="{{ route('backend.store')}}" method="POST">
+        <form action="{{ route('backend.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-3">

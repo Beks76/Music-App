@@ -15,7 +15,7 @@
                         <a class="navbar-brand" href="{{route('backend.index')}}">Genres:</a>
                         <div class="navbar-nav">
                             @foreach($genres as $gen)
-                                <a class="nav-item nav-link" href="{{route('albums.gen', $gen->id)}}">{{$gen->name}}</a>
+                                <a class="nav-item nav-link" href="{{route('backend.genre', $gen->id)}}">{{$gen->name}}</a>
                             @endforeach
                         </div>
                     </div>
@@ -32,17 +32,17 @@
                                 <th>Artist</th>
                                 <th>Genre</th>
                                 <th class="text-right">Year</th>
-                                <th class="text-right">Actions</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($albums as $a)
                             <tr>
-                                <td class="text-center">{{$a->id}}</td>
-                                <td>{{$a->name}}</td>
-                                <td>{{$a->artist}}</td>
-                                <td>{{$a->genre->name}}</td>
-                                <td class="text-right">{{$a->year}}</td>
+                                <td class="text-center">{{ $a->id }}</td>
+                                <td>{{ $a->name }}</td>
+                                <td>{{ $a->artist }}</td>
+                                <td>{{ $a->genre->name }}</td>
+                                <td class="text-right">{{ $a->year }}</td>
                                 <td class="d-sm-flex justify-content-right">
                                     <a href="{{route('backend.show', $a->id)}}" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
                                         <i class="material-icons">album</i>

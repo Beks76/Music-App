@@ -6,6 +6,7 @@ use App\Models\Album;
 use App\Models\Tag;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
@@ -52,8 +53,11 @@ class AdminController extends Controller
         $album->name = $request->input('name');
         $album->artist = $request->input('artist');
         $album->year = $request->input('year');
-        $album->cover = $request->input('cover');
+        $album->cover = $request->cover->store('uploads', 'public');
+        $image = Image::make(public_path("storage/{$album->cover}"))->fit(265, 265);
+        $image->save();
         $album->genre_id = $request->input('genre');
+    
         $album->save();
 
         $album->tags()->sync($request->input('tag'));
