@@ -20,12 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdc06b2d-b85b-471a-9122-d092d255a1e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Music-App.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Music-App.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/AlbumFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/AlbumFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/chart/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chart/index.blade.php" afterDir="false" />
     </list>
@@ -181,7 +176,7 @@
       <workItem from="1606073178699" duration="416000" />
       <workItem from="1606111968715" duration="613000" />
       <workItem from="1606138551872" duration="538000" />
-      <workItem from="1606139141281" duration="6229000" />
+      <workItem from="1606139141281" duration="7994000" />
     </task>
     <servers />
   </component>
