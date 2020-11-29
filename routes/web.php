@@ -28,7 +28,7 @@ Route::resource('/home', HomeController::class);
 
 Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->middleware('auth')->name('profile.index');
 
-Route::get('/chart', [ChartController::class, 'index']);
+Route::get('/chart', [ChartController::class, 'index'])->middleware('auth')->name('chart.index');
 
 Route::get('/signin', [AuthController::class, 'getSignin'])->middleware('guest')->name('auth.signin');
 Route::post('/signin', [AuthController::class, 'postSignin'])->middleware('guest')->name('auth.postSignin');
