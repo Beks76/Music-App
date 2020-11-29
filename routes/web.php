@@ -20,18 +20,20 @@ use App\Http\Controllers\AdminController;
 */
 
 
-Route::resource('/backend', AdminController::class);
-Route::get('/backend/gen/{genre}', [AdminController::class, 'albumByGenre'])->name('backend.genre');
+Route::resource('/backend', AdminController::class)->middleware(['auth', 'auth.admin']);
+Route::get('/backend/gen/{genre}', [AdminController::class, 'albumByGenre'])->middleware(['auth', 'auth.admin'])->name('backend.genre');
 
 Route::redirect('/', '/home');
 Route::resource('/home', HomeController::class);
 
+Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->middleware('auth')->name('profile.index');
+
 Route::get('/chart', [ChartController::class, 'index']);
 
-Route::get('/signin', [AuthController::class, 'getSignin'])->name('auth.signin');
-Route::post('/signin', [AuthController::class, 'postSignin'])->name('auth.postSignin');
-Route::get('/signup', [AuthController::class, 'getSignup'])->name('auth.signup');
-Route::post('/signup', [AuthController::class, 'store'])->name('auth.store');
+Route::get('/signin', [AuthController::class, 'getSignin'])->middleware('guest')->name('auth.signin');
+Route::post('/signin', [AuthController::class, 'postSignin'])->middleware('guest')->name('auth.postSignin');
+Route::get('/signup', [AuthController::class, 'getSignup'])->middleware('guest')->name('auth.signup');
+Route::post('/signup', [AuthController::class, 'store'])->middleware('guest')->name('auth.store');
 Route::get('/logout', [AuthController::class, 'getLogOut'])->name('auth.logout');
 
 

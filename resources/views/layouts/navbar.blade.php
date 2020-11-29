@@ -4,6 +4,16 @@
             <div class="col-lg-2">
                 <a href="{{ route('home.index') }}" class="logo">{{ config('app.name') }}</a>
             </div>
+            <div class="col-lg-3">
+                <form action="" class="navbar-form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="search" name="search" id="" placeholder="Search Anything Here..." class="form-control">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
             @if (Auth::check())
                 <div class="col-lg-5 ml-auto">
                     <nav class="nav">
@@ -12,10 +22,10 @@
                                 <a href="chart.html">Chart</a>
                             </li>
                             <li class="menu__item">
-                                <a href="devices.html">Devices</a>
+                                <a href="devices.html">Artists</a>
                             </li>
                             <li class="menu__item">
-                                <a href="devices.html">{{ Auth::user()->getNameOrUsername() }}</a>
+                                <a href="{{ route('profile.index', Auth::id()) }}">{{ Auth::user()->getNameOrUsername() }}</a>
                             </li>  
                             <li class="menu__item">
                                 <a href="{{ route('auth.logout') }}">Log out</a>
