@@ -24,7 +24,11 @@ class AuthController extends Controller
         {
             return redirect()->back()->with('danger', 'Login or password is incorrect');
         }
-        
+
+        if(Auth::user()->hasAnyRole('admin'))
+        {
+            return redirect()->route('backend.index')->with('success', 'You are logged in!');
+        }
         return redirect()->route('home.index')->with('success', 'You are logged in!');
     }
 

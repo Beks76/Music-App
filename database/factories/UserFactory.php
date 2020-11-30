@@ -25,7 +25,7 @@ class UserFactory extends Factory
         return [
             'email' => $this->faker->unique()->safeEmail,
             'username' =>  $this->faker->unique()->userName,
-            'password' => $this->faker->password(6),// password
+            'password' => $this->faker->word(6),// password
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'remember_token' => Str::random(10),
