@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Album;
-use App\Models\Tag;
 use App\Models\Genre;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 
-class AdminController extends Controller
+class GenreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +14,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $albums = Album::all();
         $genres = Genre::all();
-        return view('admin.index', compact(['albums', 'genres']));
-    }
-
-    public function albumByGenre(Genre $genre)
-    {
-        $albums = Album::where('genre_id', $genre->id)->get();
-        $genres = Genre::all();
-        return view('admin.index', compact(['albums', 'genres']));
+        return view('genre.index', compact('genres'));
     }
 
     /**
@@ -36,7 +25,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('genre.create');
     }
 
     /**
@@ -47,51 +36,62 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        $genre = new Genre();
+        $genre->name = $request->input('name');
+    
+        $genre->save();
 
+        return redirect()->route('genre.index')->with('success', 'Genre was added');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Album  $album
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        // 
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Album  $album
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        // 
+        $genre = Genre::find($id);
+        return view('genre.edit', compact('genre'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Album  $album
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        // 
+        $genre = Genre::find($id);
+        $genre->update($request->only('name'));
+        return redirect()->route('genre.index')->with('success', ' Album was updated successfully with ID: '.$genre->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Album  $album
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($album)
+    public function destroy($id)
     {
-        // 
+        $genre = Genre::find($id);
+        $genre->delete();
+
+        return redirect()->route('genre.index')->with('success', ' Genre was deleted successfully with ID: '.$genre->id);
     }
 }

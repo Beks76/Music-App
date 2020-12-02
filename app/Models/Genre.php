@@ -12,7 +12,6 @@ class Genre extends Model
 
     protected $fillable = [
         'name'
-
     ];
 
     public function albums(){

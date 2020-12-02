@@ -7,6 +7,10 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +24,41 @@ use App\Http\Controllers\AdminController;
 */
 
 
-Route::resource('/backend', AdminController::class)->middleware(['auth', 'auth.admin']);
-Route::get('/backend/gen/{genre}', [AdminController::class, 'albumByGenre'])->middleware(['auth', 'auth.admin'])->name('backend.genre');
+Route::get('/backend', [AdminController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('backend.index');
+
+Route::get('/album', [AlbumController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('album.index');
+Route::get('/album/gen/{genre}', [AlbumController::class, 'albumByGenre'])->middleware(['auth', 'auth.admin'])->name('album.genre');
+Route::post('/album', [AlbumController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('album.store');
+Route::get('/album/create', [AlbumController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('album.create');
+Route::get('/album/{album}', [AlbumController::class, 'show'])->middleware('auth')->name('album.show');
+Route::patch('/album/{album}', [AlbumController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('album.update');
+Route::delete('/album/{album}', [AlbumController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('album.destroy');
+Route::get('/album/{album}/edit', [AlbumController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('album.edit');
+
+Route::get('/genre', [GenreController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('genre.index');
+Route::post('/genre', [GenreController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('genre.store');
+Route::get('/genre/create', [GenreController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('genre.create');
+Route::get('/genre/{create}', [GenreController::class, 'show'])->middleware('auth')->name('genre.show');
+Route::patch('/genre/{genre}', [GenreController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('genre.update');
+Route::delete('/genre/{genre}', [GenreController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('genre.destroy');
+Route::get('/genre/{genre}/edit', [GenreController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('genre.edit');
+
+Route::get('/tag', [TagController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('tag.index');
+Route::post('/tag', [TagController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('tag.store');
+Route::get('/tag/create', [TagController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('tag.create');
+Route::get('/tag/{create}', [GenrTagControllereController::class, 'show'])->middleware('auth')->name('tag.show');
+Route::patch('/tag/{tag}', [TagController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('tag.update');
+Route::delete('/tag/{tag}', [TagController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('tag.destroy');
+Route::get('/tag/{tag}/edit', [TagController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('tag.edit');
+
+
+Route::get('/role', [RoleController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('role.index');
+Route::post('/role', [RoleController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('role.store');
+Route::get('/role/create', [RoleController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('role.create');
+Route::get('/role/{create}', [RoleController::class, 'show'])->middleware('auth')->name('role.show');
+Route::patch('/role/{role}', [RoleController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('role.update');
+Route::delete('/role/{role}', [RoleController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('role.destroy');
+Route::get('/role/{role}/edit', [RoleController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('role.edit');
 
 Route::redirect('/', '/home');
 Route::resource('/home', HomeController::class);
