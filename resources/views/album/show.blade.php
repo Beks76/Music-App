@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md-6 offset-3 mt-5">
                         <b>Genre: </b>
-                        <p class="lead">{{$album->genre->name}} </p>
+                        <p class="lead">{{$album->genre->name ?? 'None'}} </p>
                     </div>
                     <div class="col-md-6 offset-3 mt-5">
                         <b>Year: </b>

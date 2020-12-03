@@ -13,7 +13,7 @@
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <a class="navbar-brand" href="{{route('album.index')}}">Genres:</a>
-                        <div class="navbar-nav">
+                        <div class="navbar-nav">                                
                             @foreach($genres as $gen)
                                 <a class="nav-item nav-link" href="{{route('album.genre', $gen->id)}}">{{$gen->name}}</a>
                             @endforeach
@@ -41,7 +41,7 @@
                                 <td class="text-center">{{ $a->id }}</td>
                                 <td>{{ $a->name }}</td>
                                 <td>{{ $a->artist }}</td>
-                                <td>{{ $a->genre->name }}</td>
+                                <td>{{ $a->genre->name ?? 'None' }}</td>
                                 <td class="text-right">{{ $a->year }}</td>
                                 <td class="d-sm-flex justify-content-right">
                                     <a href="{{route('album.show', $a->id)}}" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
@@ -62,6 +62,7 @@
                                 </td>
                             </tr>
                         @endforeach
+
                         </tbody>
                     </table>
                 </div>

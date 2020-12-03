@@ -49,7 +49,7 @@
 
 <section id="track" class="track">
     <div class="container">
-        @foreach($genres as $genre)
+        @forelse($genres as $genre)
             <div class="track__block">
                 <div class="row">
                     <div class="col-lg-2">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="row">
                     @foreach($albums as $album)
-                        @if ($genre->id == $album->genre->id)
+                        @if ($genre->id == $album['genre_id'])
                             <div class="col-lg-3">
                                 <div class="tracks">
                                     <div class="tracks__item">
@@ -80,8 +80,9 @@
                     @endforeach
                 </div>
             </div>
-        @endforeach
-
+        @empty
+            <p>None</p>
+        @endforelse
         {{-- <div class="track__block">
             <div class="row">
                 <div class="col-lg-4">
