@@ -21,10 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bdc06b2d-b85b-471a-9122-d092d255a1e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_22_114943_create_albums_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_22_114943_create_albums_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_22_123121_create_album_tag_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_22_123121_create_album_tag_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_29_082327_create_role_user_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_29_082327_create_role_user_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +181,10 @@
       <workItem from="1606218969455" duration="259000" />
       <workItem from="1606403816175" duration="1279000" />
       <workItem from="1606441628982" duration="3654000" />
-      <workItem from="1606659286221" duration="5372000" />
+      <workItem from="1606659286221" duration="6755000" />
+      <workItem from="1606738436301" duration="1558000" />
+      <workItem from="1606794073959" duration="1956000" />
+      <workItem from="1607003606817" duration="2347000" />
     </task>
     <servers />
   </component>
@@ -210,10 +212,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1606056140561" />
-    <state x="603" y="115" key="RollbackChangesDialog" timestamp="1606663919049">
+    <state x="603" y="115" key="RollbackChangesDialog" timestamp="1606666273473">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="603" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1606663919049" />
+    <state x="603" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1606666273473" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1606065685270">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

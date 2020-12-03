@@ -22,7 +22,7 @@ class CreateAlbumsTable extends Migration
             $table->timestamps();
 
 
-            $table->foreignId('genre_id')->constrained();
+            $table->foreignId('genre_id')->nullable()->constrained()->onDelete('set null');
         });
     }
 

@@ -15,8 +15,8 @@ class CreateAlbumTagTable extends Migration
     {
         Schema::create('album_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('album_id')->constrained();
-            $table->foreignId('tag_id')->constrained();
+            $table->foreignId('album_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('tag_id')->nullable()->constrained()->onDelete('set null');
         });
     }
 
