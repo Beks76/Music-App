@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Album;
 use App\Models\Tag;
 use App\Models\Genre;
+use App\Models\Song;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 
@@ -74,7 +75,25 @@ class AlbumController extends Controller
     public function show($id)
     {
         $album = Album::find($id);
+        foreach ($album->songs as $song) {
+            $file = new mp3Controller("storage/albums/".$album->name."/".$song->url);
+            $duration = $file->getDuration();
+            $length = mp3Controller::formatTime($duration);
+            $song['length'] = $length;
+        }
         return view('album.show', compact('album'));
+    }
+
+    public function listen($id)
+    {
+        $album = Album::find($id);
+        foreach ($album->songs as $song) {
+            $file = new mp3Controller("storage/albums/".$album->name."/".$song->url);
+            $duration = $file->getDuration();
+            $length = mp3Controller::formatTime($duration);
+            $song['length'] = $length;
+        }
+        return view('album.listen', compact('album'));
     }
 
     /**
@@ -87,7 +106,8 @@ class AlbumController extends Controller
     {
         $album = Album::find($id);
         $gen = Genre::all();
-        return view('album.edit', compact(['album', 'gen']));
+        $tags = Tag::all();
+        return view('album.edit', compact(['album', 'gen', 'tags']));
     }
 
     /**
@@ -100,8 +120,8 @@ class AlbumController extends Controller
     public function update(Request $request, $id)
     {
         $album = Album::find($id);
-        $album->update($request->only('name', 'artist', 'year', 'genre_id'));
-        return redirect()->route('backend.index')->with('success', ' Album was updated successfully with ID: '.$album->id);
+        $album->update($request->only('name', 'artist', 'year', 'genre_id', 'tag'));
+        return redirect()->route('album.index')->with('success', ' Album was updated successfully with ID: '.$album->id);
     }
 
     /**

@@ -29,7 +29,7 @@
                         <label for="lastname" class="control-label">Genre:</label>
                         <select class="form-control" name="genre_id" id="exampleFormControlSelect1">
                             @foreach($gen as $g)
-                                @if ($g->id == $album->genre->id)
+                                @if ($g->id == ($album->genre->id ?? null))
                                     <option value="{{$g->id}}" selected>{{$g->name}}</option>
                                 @else
                                     <option value="{{$g->id}}">{{$g->name}}</option>
@@ -38,7 +38,20 @@
                         </select>
                     </div>
                 </div>
-
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lastname" class="control-label">Tag:</label>
+                        <select class="form-control" name="tag" id="exampleFormControlSelect1">
+                            @foreach($tags as $tag)
+                                @if ($tag->id == ($album->tag->id ?? null))
+                                    <option value="{{$tag->id}}" selected>{{$tag->name}}</option>
+                                @else
+                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="lastname" class="control-label">Year</label>

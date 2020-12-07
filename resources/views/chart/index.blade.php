@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <p class="chart__title">Charts</p>
+                <p class="chart__title">Chart</p>
             </div>
         </div>
         <div class="row">

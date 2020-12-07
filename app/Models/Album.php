@@ -23,4 +23,8 @@ class Album extends Model
         return $this->belongsToMany(Tag::class);
     }
     
+    public function songs() {
+        return $this->hasMany(Song::class);
+    }
+
 }

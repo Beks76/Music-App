@@ -17,7 +17,8 @@
                     <a class="btn btn-info btn-just-icon btn-sm mt-4" href="{{ route('album.index') }}">Albums</a>
                     <a class="btn btn-info btn-just-icon btn-sm mt-4" href="{{ route('genre.index') }}">Genres</a>
                     <a class="btn btn-info btn-just-icon btn-sm mt-4" href="{{ route('tag.index') }}">Tags</a>
-                    <a class="btn btn-info btn-just-icon btn-sm mt-4 mb-4" href="{{ route('role.index') }}">Roles</a>
+                    <a class="btn btn-info btn-just-icon btn-sm mt-4" href="{{ route('role.index') }}">Roles</a>
+                    <a class="btn btn-info btn-just-icon btn-sm mt-4 mb-4" href="{{ route('song.index') }}">Songs</a>
                 </div>
             </div>
         </div>

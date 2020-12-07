@@ -11,6 +11,8 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\SongController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,7 @@ Route::get('/album/gen/{genre}', [AlbumController::class, 'albumByGenre'])->midd
 Route::post('/album', [AlbumController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('album.store');
 Route::get('/album/create', [AlbumController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('album.create');
 Route::get('/album/{album}', [AlbumController::class, 'show'])->middleware('auth')->name('album.show');
+Route::get('/album/listen/{album}', [AlbumController::class, 'listen'])->middleware('auth')->name('album.listen');
 Route::patch('/album/{album}', [AlbumController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('album.update');
 Route::delete('/album/{album}', [AlbumController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('album.destroy');
 Route::get('/album/{album}/edit', [AlbumController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('album.edit');
@@ -60,10 +63,14 @@ Route::patch('/role/{role}', [RoleController::class, 'update'])->middleware(['au
 Route::delete('/role/{role}', [RoleController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('role.destroy');
 Route::get('/role/{role}/edit', [RoleController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('role.edit');
 
+Route::get('/song', [SongController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('song.index');
+Route::post('/song', [SongController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('song.store');
+Route::get('/song/create', [SongController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('song.create');
+
 Route::redirect('/', '/home');
 Route::resource('/home', HomeController::class);
 
-Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->middleware('auth')->name('profile.index');
+Route::get('/profile/{user}', [ProfilesController::class, 'index'])->middleware('auth')->name('profile.index');
 
 Route::get('/chart', [ChartController::class, 'index'])->middleware('auth')->name('chart.index');
 
