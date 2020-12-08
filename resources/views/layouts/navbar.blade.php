@@ -8,9 +8,9 @@
                     </div>
                     @if (Auth::check())
                         <div class="col-lg-4">
-                            <form class="navbar-form" role="search">
+                            <form method="GET" action="{{ route('search.index') }}" class="navbar-form" role="search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="q">
+                                    <input type="text" class="form-control" placeholder="Search" name="query">
                                     <div class="input-group-btn">
                                         <button class="btn-default" type="submit">Search</button>
                                     </div>

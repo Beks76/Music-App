@@ -437,11 +437,10 @@ ul, li {
     padding-bottom: 60px;
 }
 
-.track__text {
+.track__text p {
     color: #8A8F95;
     font-size: 14px;
     font-weight: 300;
-
 }
 
 

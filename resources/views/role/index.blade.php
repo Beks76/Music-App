@@ -28,10 +28,7 @@
                                 <td class="text-center">{{ $r->id }}</td>
                                 <td>{{ $r->name }}</td>
                                 <td class="d-sm-flex justify-content-right">
-                                    <a href="{{route('role.show', $r->id)}}" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
-                                        <i class="material-icons">role</i>
-                                    </a>
-
+                    
                                     <a href="{{route('role.edit', $r->id)}}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
                                         <i class="material-icons">edit</i>
                                     </a>

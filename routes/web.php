@@ -13,6 +13,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\searchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::get('/album/{album}/edit', [AlbumController::class, 'edit'])->middleware(
 Route::get('/genre', [GenreController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('genre.index');
 Route::post('/genre', [GenreController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('genre.store');
 Route::get('/genre/create', [GenreController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('genre.create');
-Route::get('/genre/{create}', [GenreController::class, 'show'])->middleware('auth')->name('genre.show');
+// Route::get('/genre/{create}', [GenreController::class, 'show'])->middleware('auth')->name('genre.show');
 Route::patch('/genre/{genre}', [GenreController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('genre.update');
 Route::delete('/genre/{genre}', [GenreController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('genre.destroy');
 Route::get('/genre/{genre}/edit', [GenreController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('genre.edit');
@@ -49,7 +50,7 @@ Route::get('/genre/{genre}/edit', [GenreController::class, 'edit'])->middleware(
 Route::get('/tag', [TagController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('tag.index');
 Route::post('/tag', [TagController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('tag.store');
 Route::get('/tag/create', [TagController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('tag.create');
-Route::get('/tag/{create}', [GenrTagControllereController::class, 'show'])->middleware('auth')->name('tag.show');
+// Route::get('/tag/{create}', [GenrTagControllereController::class, 'show'])->middleware('auth')->name('tag.show');
 Route::patch('/tag/{tag}', [TagController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('tag.update');
 Route::delete('/tag/{tag}', [TagController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('tag.destroy');
 Route::get('/tag/{tag}/edit', [TagController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('tag.edit');
@@ -58,7 +59,7 @@ Route::get('/tag/{tag}/edit', [TagController::class, 'edit'])->middleware(['auth
 Route::get('/role', [RoleController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('role.index');
 Route::post('/role', [RoleController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('role.store');
 Route::get('/role/create', [RoleController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('role.create');
-Route::get('/role/{create}', [RoleController::class, 'show'])->middleware('auth')->name('role.show');
+// Route::get('/role/{create}', [RoleController::class, 'show'])->middleware('auth')->name('role.show');
 Route::patch('/role/{role}', [RoleController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('role.update');
 Route::delete('/role/{role}', [RoleController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('role.destroy');
 Route::get('/role/{role}/edit', [RoleController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('role.edit');
@@ -69,6 +70,8 @@ Route::get('/song/create', [SongController::class, 'create'])->middleware(['auth
 
 Route::redirect('/', '/home');
 Route::resource('/home', HomeController::class);
+
+Route::get('/search', [searchController::class, 'index'])->middleware('auth')->name('search.index');
 
 Route::get('/profile/{user}', [ProfilesController::class, 'index'])->middleware('auth')->name('profile.index');
 

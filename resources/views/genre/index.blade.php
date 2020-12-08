@@ -28,10 +28,7 @@
                                 <td class="text-center">{{ $g->id }}</td>
                                 <td>{{ $g->name }}</td>
                                 <td class="d-sm-flex justify-content-right">
-                                    <a href="{{route('genre.show', $g->id)}}" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
-                                        <i class="material-icons">genre</i>
-                                    </a>
-
+                                    
                                     <a href="{{route('genre.edit', $g->id)}}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
                                         <i class="material-icons">edit</i>
                                     </a>

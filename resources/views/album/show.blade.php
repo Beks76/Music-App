@@ -22,7 +22,7 @@
                         <div class="album-details">
                             <h2>{{$album->name}}</h2>
                             <p>Released: {{$album->year}}</p>
-                            <p>Genre: {{$album->genre->name}}</p>
+                            <p>Genre: {{$album->genre->name ?? 'None'}}</p>
                             <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, deserunt autem nesciunt vero rem obcaecati porro dolorem nostrum alias modi, quidem, unde quae quam soluta quibusdam ipsum perferendis qui molestiae.</p>
 
                             <div class="mt-4">

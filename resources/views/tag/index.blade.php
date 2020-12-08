@@ -28,10 +28,7 @@
                                 <td class="text-center">{{ $t->id }}</td>
                                 <td>{{ $t->name }}</td>
                                 <td class="d-sm-flex justify-content-right">
-                                    <a href="{{route('tag.show', $t->id)}}" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
-                                        <i class="material-icons">tag</i>
-                                    </a>
-
+                                   
                                     <a href="{{route('tag.edit', $t->id)}}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
                                         <i class="material-icons">edit</i>
                                     </a>
