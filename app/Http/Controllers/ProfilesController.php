@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilesController extends Controller
 {
@@ -12,8 +15,9 @@ class ProfilesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('profiles.index');
+    {   
+        $albums = Auth::user()->albums()->get();
+        return view('profiles.index', compact('albums'));
     }
 
     /**
@@ -21,6 +25,15 @@ class ProfilesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function like($id)
+    {
+        $album = Album::find($id);
+        $album->users()->sync(Auth::user()->id);
+
+        return redirect()->route('album.show', $id);
+    }
+
     public function create()
     {
         //
@@ -80,5 +93,14 @@ class ProfilesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete_album($id)
+    {
+        $user = new User();
+        $album = Album::find($id);
+        $album->users()->detach($user->id);
+
+        return redirect()->route('album.show', $id);
     }
 }

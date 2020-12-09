@@ -36,7 +36,12 @@
             </div>
             <div class="actions mt-4">
                 <div style="width: 100%;">
-                    <a href="{{ route('album.listen', $album->id) }}" class="btn">listen</a>
+                    <a href="{{ route('album.listen', $album->id) }}" class="btn mr-1">listen</a>
+                    @if (auth()->user()->albums()->pluck('album_id')->contains($album->id))
+                        <a href="{{ route('profile.album_delete', $album->id) }}" class="btn">delete</a>
+                    @else
+                        <a href="{{ route('profile.like', $album->id) }}" class="btn">like</a>
+                    @endif
                 </div>
             </div>
             <div class="album-tracks mt-4">

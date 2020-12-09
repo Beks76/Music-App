@@ -44,6 +44,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function albums()
+    {
+        return $this->belongsToMany(Album::class);
+    }
+
     public function getName()
     {
         if($this->first_name & $this->last_name)
@@ -62,11 +72,6 @@ class User extends Authenticatable
     public function getNameOrUsername()
     {
         return $this->getName() ?: $this->username;
-    }
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
     }
 
     public function hasAnyRoles($roles)

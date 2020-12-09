@@ -62,11 +62,13 @@
                             <div class="col-lg-3">
                                 <div class="tracks">
                                     <div class="tracks__item">
-                                        @if (Str::startsWith($album->cover, 'http'))
-                                            <img src="{{ $album->cover }}" alt="">
-                                        @else
-                                            <img src="/storage/{{$album->cover }}" alt="">
-                                        @endif
+                                        <a href="{{ route('album.show', $album->id) }}">
+                                            @if (Str::startsWith($album->cover, 'http'))
+                                                <img src="{{ $album->cover }}" alt="">
+                                            @else
+                                                <img src="/storage/{{$album->cover }}" alt="">
+                                            @endif
+                                        </a>
                                         <p class="track__text">
                                             @foreach ($album->tags()->get() as $tag)
                                                <a href=""> #{{$tag->name}}</a>
