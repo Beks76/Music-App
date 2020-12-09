@@ -37,6 +37,9 @@ class DatabaseSeeder extends Seeder
             );
         });
 
+        \App\Models\Plans::create(['title' => 'Premium Plan', 'identifier'=>'premium', 'stripe_id'=>'price_1HwQv0HWyvEzHXX0kBzAmd1h', 'price'=>'$5.00']);
 
+        \App\Models\Plans::create(['title' => 'Basic Plan', 'identifier'=>'basic', 'stripe_id'=>'price_1HwQt7HWyvEzHXX0aR3euIDW', 'price'=>'$1.00']);
+        \App\Models\Plans::create(['title' => 'Free Trial', 'identifier'=>'free',  'price'=>'$0.00']);
     }
 }

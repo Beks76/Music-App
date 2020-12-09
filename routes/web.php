@@ -14,7 +14,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\searchController;
-
+use App\Http\Controllers\Subscriptions\SubscriptionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,4 +85,7 @@ Route::get('/signup', [AuthController::class, 'getSignup'])->middleware('guest')
 Route::post('/signup', [AuthController::class, 'store'])->middleware('guest')->name('auth.store');
 Route::get('/logout', [AuthController::class, 'getLogOut'])->name('auth.logout');
 
-
+Route::group(['namespace' => 'Subscriptions'], function() {
+    Route::get('/subscribe', [SubscriptionController::class, 'index'])->middleware('auth')->name('payments');
+    Route::post('/subscribe', [SubscriptionController::class, 'store'])->middleware('auth')->name('payments.store');
+});
