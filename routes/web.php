@@ -87,5 +87,5 @@ Route::get('/logout', [AuthController::class, 'getLogOut'])->name('auth.logout')
 
 Route::group(['namespace' => 'Subscriptions'], function() {
     Route::get('/subscribe', [SubscriptionController::class, 'index'])->middleware('auth')->name('payments');
-    Route::post('/subscribe', [SubscriptionController::class, 'store'])->middleware('auth')->name('payments.store');
+    Route::post('/subscribe', [SubscriptionController   ::class, 'store'])->middleware('auth')->name('payments.store');
 });

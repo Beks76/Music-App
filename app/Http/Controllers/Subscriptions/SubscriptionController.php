@@ -14,11 +14,10 @@ class SubscriptionController extends Controller
     {
         $data = [
             'intent' => auth()->user()->createSetupIntent(),
-            'plans' => Plans::get()
         ];
 
         return view('subscriptions.subscribe')->with($data);
-        dd($data);
+
     }
 
     public function store(Request $request)
@@ -33,7 +32,7 @@ class SubscriptionController extends Controller
 
         $request->user()->newSubscription('default', $plan->stripe_id)->create($request->token);
 
-        return back();
+        return redirect()->route('chart.index')->with('success', ' Thank you for your subscription!');
     }
 
 

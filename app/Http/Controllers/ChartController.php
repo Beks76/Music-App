@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plans;
 use App\Models\Album;
 use App\Models\Tag;
 use App\Models\Genre;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class ChartController extends Controller
 {
@@ -20,7 +21,16 @@ class ChartController extends Controller
         $albums = Album::all();
         $genres = Genre::all();
         $tags = Tag::all();
-        return view('chart.index', compact(['albums', 'genres', 'tags']));
+        $plans = Plans::get();
+        $sub = Auth::user()->stripe_id;
+        return view('chart.index', compact(['albums', 'genres', 'tags', 'plans', 'sub']));
+    }
+
+    public function checkSubscription()
+    {
+
+        $user = User::all();
+        return view('chart.index', compact(['albums', 'genres', 'tags', 'plans']));
     }
 
     /**
