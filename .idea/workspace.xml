@@ -19,14 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdc06b2d-b85b-471a-9122-d092d255a1e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Subscriptions/SubscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Subscriptions/SubscriptionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/chart/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chart/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/subscriptions/subscribe.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/subscriptions/subscribe.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="bdc06b2d-b85b-471a-9122-d092d255a1e5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -197,7 +190,7 @@
       <workItem from="1606738436301" duration="1558000" />
       <workItem from="1606794073959" duration="1956000" />
       <workItem from="1607003606817" duration="2347000" />
-      <workItem from="1607610881328" duration="15171000" />
+      <workItem from="1607610881328" duration="15599000" />
     </task>
     <servers />
   </component>
