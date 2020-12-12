@@ -29,11 +29,12 @@ class DatabaseSeeder extends Seeder
 
         $role1 = \App\Models\Role::create(['name' => 'user']);
         $role2 = \App\Models\Role::create(['name' => 'admin']);
+        $role3 = \App\Models\Role::create(['name' => 'artist']);
 
         $roles = \App\Models\Role::all();
         \App\Models\User::all()->each(function ($user) use ($roles) {
             $user->roles()->attach(
-                $roles->random(rand(1, 2))->pluck('id')->toArray()
+                $roles->random(rand(1, 3))->pluck('id')->toArray()
             );
         });
 

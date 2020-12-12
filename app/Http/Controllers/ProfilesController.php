@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Album;
 use App\Models\User;
+use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,10 +15,15 @@ class ProfilesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($username)
     {   
-        $albums = Auth::user()->albums()->get();
-        return view('profiles.index', compact('albums'));
+        $user = User::where('username', $username)->first();
+        if(!$user) {
+            return abort(404);
+        }
+
+        $albums =$user->albums()->get();
+        return view('profiles.index', compact(['albums', 'user']));
     }
 
     /**
@@ -69,7 +75,8 @@ class ProfilesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        return view('profiles.edit', compact('user'));
     }
 
     /**
@@ -81,7 +88,9 @@ class ProfilesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->update($request->only('username', 'email', 'first_name', 'last_name', 'location'));
+        return redirect()->route('profile.index', $user->username);
     }
 
     /**

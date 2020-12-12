@@ -74,8 +74,11 @@ Route::resource('/home', HomeController::class);
 Route::get('/search', [searchController::class, 'index'])->middleware('auth')->name('search.index');
 
 Route::get('/profile/{user}', [ProfilesController::class, 'index'])->middleware('auth')->name('profile.index');
+Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit'])->middleware('auth')->name('profile.edit');
+Route::patch('/profile/{profile}', [ProfilesController::class, 'update'])->middleware('auth')->name('profile.update');
 Route::get('/profile/like/{album_id}', [ProfilesController::class, 'like'])->middleware('auth')->name('profile.like');
 Route::get('/profile/album/{album_id}/delete', [ProfilesController::class, 'delete_album'])->middleware('auth')->name('profile.album_delete');
+
 
 Route::get('/chart', [ChartController::class, 'index'])->middleware('auth')->name('chart.index');
 
@@ -87,5 +90,5 @@ Route::get('/logout', [AuthController::class, 'getLogOut'])->name('auth.logout')
 
 Route::group(['namespace' => 'Subscriptions'], function() {
     Route::get('/subscribe', [SubscriptionController::class, 'index'])->middleware('auth')->name('payments');
-    Route::post('/subscribe', [SubscriptionController   ::class, 'store'])->middleware('auth')->name('payments.store');
+    Route::post('/subscribe', [SubscriptionController::class, 'store'])->middleware('auth')->name('payments.store');
 });

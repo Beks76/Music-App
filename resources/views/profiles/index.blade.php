@@ -7,16 +7,33 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-5">
-                <div class="profile d-flex mt-4 mb-4">
+                <div class="profile align-items-center d-flex mt-4 mb-4">
                     <div class="profile__img">
                         <img src="https://image.flaticon.com/icons/png/128/3011/3011270.png" alt="">
                     </div>
                     <div class="profile__info ml-4">
-                        <p>My collection</p>
-                        <h2>{{ Auth::user()->getNameOrUsername() }}</h2>
+                        @if (Auth::user()->id != $user->id)
+                            <p>Collection</p>
+                        @else
+                            <p>My collection</p>
+                        @endif
+
+                        @if ($user->hasAnyRole('artist'))
+                            <div class="d-flex ">
+                                <h2>{{$user->getNameOrUsername() }}</h2>
+                                <a href="#" class="mt-2 ml-2">🎤</a>            
+                            </div>  
+                            <p>followers:228k</p>      
+                        @else
+                            <h2>{{$user->getNameOrUsername() }}</h2>
+                        @endif
                         <div class="profile__action d-flex mt-4">
-                            <a href="#" class="btn mr-4">Play</a>
-                            <a href="#" class="btn">Edit</a>
+                            @if (Auth::user()->id != $user->id && $user->hasAnyRole('artist'))
+                                <a href="{{ route('profile.edit', $user->id) }}" class="btn mr-4">Follow</a>
+                            @endif
+                            @if (Auth::user()->id == $user->id)
+                                <a href="{{ route('profile.edit', Auth::user()->id) }}" class="btn">Edit</a>
+                            @endif
                         </div>
                     </div>
                 </div>

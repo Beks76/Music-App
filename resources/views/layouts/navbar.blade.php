@@ -27,7 +27,7 @@
                                         <a href="devices.html">Artists</a>
                                     </li>
                                     <li class="menu__item">
-                                        <a href="{{ route('profile.index', Auth::id()) }}">{{ Auth::user()->getNameOrUsername() }}</a>
+                                        <a href="{{ route('profile.index', Auth::user()->username) }}">{{ Auth::user()->getNameOrUsername() }}</a>
                                     </li>
                                     <li class="menu__item">
                                         <a href="{{ route('auth.logout') }}">Log out</a>
