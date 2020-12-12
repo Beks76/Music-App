@@ -58,12 +58,12 @@ class AlbumController extends Controller
         $image = Image::make(public_path("storage/{$album->cover}"))->fit(265, 265);
         $image->save();
         $album->genre_id = $request->input('genre');
-    
+
         $album->save();
 
         $album->tags()->sync($request->input('tag'));
 
-        return redirect()->route('backend.index')->with('success', ' Album was added');
+        return redirect()->route('album.index')->with('success', ' Album was added');
     }
 
     /**
@@ -120,7 +120,8 @@ class AlbumController extends Controller
     public function update(Request $request, $id)
     {
         $album = Album::find($id);
-        $album->update($request->only('name', 'artist', 'year', 'genre_id', 'tag'));
+        $album->update($request->only('name', 'artist', 'year', 'genre_id'));
+        $album->tags()->attach($request->only('tag'));
         return redirect()->route('album.index')->with('success', ' Album was updated successfully with ID: '.$album->id);
     }
 
@@ -137,6 +138,6 @@ class AlbumController extends Controller
         $album->tags()->detach($tag->id);
         $album->delete();
 
-        return redirect()->route('backend.index')->with('success', ' Album was deleted successfully with ID: '.$album->id);
+        return redirect()->route('album.index')->with('success', ' Album was deleted successfully with ID: '.$album->id);
     }
 }

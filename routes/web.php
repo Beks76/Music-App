@@ -11,6 +11,7 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\searchController;
@@ -54,6 +55,16 @@ Route::get('/tag/create', [TagController::class, 'create'])->middleware(['auth',
 Route::patch('/tag/{tag}', [TagController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('tag.update');
 Route::delete('/tag/{tag}', [TagController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('tag.destroy');
 Route::get('/tag/{tag}/edit', [TagController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('tag.edit');
+
+Route::get('/user', [UserRoleController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('user.index');
+Route::post('/user', [UserRoleController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('user.store');
+Route::get('/user/create', [UserRoleController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('user.create');
+// Route::get('/tag/{create}', [GenrTagControllereController::class, 'show'])->middleware('auth')->name('tag.show');
+Route::patch('/user/{user}', [UserRoleController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('user.update');
+Route::delete('/user/{user}', [UserRoleController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('user.destroy');
+Route::get('/user/{user}/edit', [UserRoleController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('user.edit');
+Route::get('/user/{user}', [UserRoleController::class, 'show'])->middleware(['auth', 'auth.admin'])->name('user.show');
+Route::delete('/user/{user}/destroyrole', [UserRoleController::class, 'destroyRole'])->middleware(['auth', 'auth.admin'])->name('user.destroyrole');
 
 
 Route::get('/role', [RoleController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('role.index');
