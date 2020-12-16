@@ -40,6 +40,14 @@ class ProfilesController extends Controller
         return redirect()->route('album.show', $id);
     }
 
+    public function follow($id)
+    {   
+        $user = User::find($id);
+        Auth::user()->following()->toggle($user->artist); 
+
+        return redirect()->route('profile.index', $user->username);
+    }
+
     public function create()
     {
         //
@@ -112,4 +120,6 @@ class ProfilesController extends Controller
 
         return redirect()->route('album.show', $id);
     }
+
 }
+

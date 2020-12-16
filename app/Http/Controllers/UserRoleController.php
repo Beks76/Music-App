@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Album;
+use App\Models\Artist;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -38,14 +40,21 @@ class UserRoleController extends Controller
      */
     public function store(Request $request)
     {
+        $artist = new Artist();
+
         $user = new User();
         $user->first_name = $request->input('fname');
         $user->last_name = $request->input('lname');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
         $user->username = $request->input('username');
-
         $user->save();
+
+        if($request->input('role') == 3) {
+            $artist->bio = 'N/A';
+            $artist->user_id = $user->id;
+            $artist->save();
+        }
 
         $user->roles()->sync($request->input('role'));
 
@@ -86,9 +95,18 @@ class UserRoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $artist = new Artist();
+
         $user = User::find($id);
         $user->update($request->only('fname', 'lname', 'email', 'role'));
         $user->roles()->attach($request->only('role'));
+        
+        if($request->input('role') == 3) {
+            $artist->bio = 'N/A';
+            $artist->user_id = $user->id;
+            $artist->save();
+        }
+
         return redirect()->route('user.index')->with('success', ' User was updated successfully with ID: '.$user->id);
     }
 
@@ -105,6 +123,10 @@ class UserRoleController extends Controller
         $user->roles()->detach($role->id);
         $user->delete();
 
+        $artist = new Artist();
+        $artist = Artist::where('user_id', $id)->first();
+        $artist->delete();
+
         return redirect()->route('user.index')->with('success', ' User was deleted successfully with ID: '.$user->id);
     }
 
@@ -113,6 +135,10 @@ class UserRoleController extends Controller
         $role = new Role;
         $users = User::find($request->input('userid'));
         $users->roles()->detach($id);
+
+        $artist = new Artist();
+        $artist = Artist::where('user_id', $id)->first();
+        $artist->delete();
 
 
         return redirect()->route('user.show', $users->id)->with('success', ' Role of user was deleted. User id: '.$users->id);

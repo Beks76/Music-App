@@ -29,8 +29,14 @@
                         @endif
                         <div class="profile__action d-flex mt-4">
                             @if (Auth::user()->id != $user->id && $user->hasAnyRole('artist'))
-                                <a href="{{ route('profile.edit', $user->id) }}" class="btn mr-4">Follow</a>
+                                @if (Auth::user()->following()->pluck('artist_id')->contains($user->artist()->get()->pluck('id')->first()))
+                                    <a href="{{ route('profile.follow', $user->id) }}" class="btn mr-4">Unfollow</a>
+                                @else
+                                    <a href="{{ route('profile.follow', $user->id) }}" class="btn mr-4">Follow</a>
+                                @endif
+                                
                             @endif
+                
                             @if (Auth::user()->id == $user->id)
                                 <a href="{{ route('profile.edit', Auth::user()->id) }}" class="btn">Edit</a>
                             @endif

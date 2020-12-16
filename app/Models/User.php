@@ -54,6 +54,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Album::class);
     }
 
+    public function artist(){
+        return $this->hasOne(Artist::class);
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(Artist::class);
+    }
+
     public function getName()
     {
         if($this->first_name & $this->last_name)
