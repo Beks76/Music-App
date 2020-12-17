@@ -27,11 +27,12 @@ class SongController extends Controller
         'song' => 'file|required'
         ]);
 
-        $albumName = Album::where('id', $request->album)->first()->name;
+        $album = Album::where('id', $request->album)->first()->name;
+        $albumName = explode(' ', trim($album));
         $song = $request->file('song');
         $songExt = $song->getClientOriginalExtension();
         $songName = $request->name . "." .$songExt;
-        $path = 'storage'.DIRECTORY_SEPARATOR.'albums'.DIRECTORY_SEPARATOR. $albumName;
+        $path = 'storage'.DIRECTORY_SEPARATOR.'albums'.DIRECTORY_SEPARATOR. $albumName[0];
 
         $song->move($path, $songName);
 

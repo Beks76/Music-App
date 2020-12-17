@@ -6,7 +6,7 @@
         if (supportsAudio) {
             var index = 0,
                 playing = false,
-                mediaPath = '/storage/albums/{{$album->name}}/',
+                mediaPath = '/storage/albums/{{$albumName[0]}}/',
                 id = 1,
                 tracks = [
                     @foreach($album->songs as $song)

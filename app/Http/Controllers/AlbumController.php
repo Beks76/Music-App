@@ -75,8 +75,9 @@ class AlbumController extends Controller
     public function show($id)
     {
         $album = Album::find($id);
+        $albumName = explode(' ', trim($album->name));
         foreach ($album->songs as $song) {
-            $file = new mp3Controller("storage/albums/".$album->name."/".$song->url);
+            $file = new mp3Controller("storage/albums/".$albumName[0]."/".$song->url);
             $duration = $file->getDuration();
             $length = mp3Controller::formatTime($duration);
             $song['length'] = $length;
@@ -87,13 +88,14 @@ class AlbumController extends Controller
     public function listen($id)
     {
         $album = Album::find($id);
+        $albumName = explode(' ', trim($album->name));
         foreach ($album->songs as $song) {
-            $file = new mp3Controller("storage/albums/".$album->name."/".$song->url);
+            $file = new mp3Controller("storage/albums/".$albumName[0]."/".$song->url);
             $duration = $file->getDuration();
             $length = mp3Controller::formatTime($duration);
             $song['length'] = $length;
         }
-        return view('album.listen', compact('album'));
+        return view('album.listen', compact(['album', 'albumName']));
     }
 
     /**
