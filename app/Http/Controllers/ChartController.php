@@ -23,7 +23,8 @@ class ChartController extends Controller
         $tags = Tag::all();
         $plans = Plans::get();
         $sub = Auth::user()->stripe_id;
-        return view('chart.index', compact(['albums', 'genres', 'tags', 'plans', 'sub']));
+        $role = Auth::user()->roles()->get()->first();
+        return view('chart.index', compact(['albums', 'genres', 'tags', 'plans', 'sub', 'role']));
     }
 
     public function checkSubscription()

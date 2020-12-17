@@ -70,6 +70,15 @@
                                                     <img src="/storage/{{$album->cover }}" alt="">
                                                 @endif
                                             </a>
+
+                                        @elseif($role->name=='admin')
+                                            <a href="{{ route('album.show', $album->id) }}">
+                                                @if (Str::startsWith($album->cover, 'http'))
+                                                    <img src="{{ $album->cover }}" alt="">
+                                                @else
+                                                    <img src="/storage/{{$album->cover }}" alt="">
+                                                @endif
+                                            </a>
                                         @else
 
                                             <a href="{{ route('album.show', $album->id) }}" data-toggle="modal" data-target="#exampleModal">

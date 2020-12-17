@@ -21,10 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bdc06b2d-b85b-471a-9122-d092d255a1e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AlbumController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AlbumController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProfilesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfilesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Subscriptions/SubscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Subscriptions/SubscriptionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/chart/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chart/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profiles/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profiles/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profiles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profiles/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -198,7 +200,9 @@
       <workItem from="1606794073959" duration="1956000" />
       <workItem from="1607003606817" duration="2347000" />
       <workItem from="1607610881328" duration="16231000" />
-      <workItem from="1607759891480" duration="13840000" />
+      <workItem from="1607759891480" duration="14451000" />
+      <workItem from="1608102494742" duration="990000" />
+      <workItem from="1608193247386" duration="13633000" />
     </task>
     <servers />
   </component>
@@ -218,10 +222,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607767565033">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608216629524">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1607767565033" />
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608216629524" />
     <state x="604" y="336" key="NewPhpFileDialog" timestamp="1607762836244">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -234,13 +238,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="204" y="0" width="1118" height="666" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1607625664074" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1606065685270">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1608216358276">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1606065685270" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607765722380">
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1608216358276" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1608223816676">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1607765722380" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1608223816676" />
   </component>
 </project>

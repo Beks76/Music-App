@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\Plans;
 use App\Models\User;
 use App\Models\Artist;
 use Illuminate\Http\Request;
@@ -16,14 +17,16 @@ class ProfilesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($username)
-    {   
+    {
         $user = User::where('username', $username)->first();
         if(!$user) {
             return abort(404);
         }
 
         $albums =$user->albums()->get();
-        return view('profiles.index', compact(['albums', 'user']));
+        $plans = Plans::get();
+        $sub = Auth::user()->stripe_id;
+        return view('profiles.index', compact(['albums', 'user', 'sub', 'plans']));
     }
 
     /**
@@ -41,9 +44,9 @@ class ProfilesController extends Controller
     }
 
     public function follow($id)
-    {   
+    {
         $user = User::find($id);
-        Auth::user()->following()->toggle($user->artist); 
+        Auth::user()->following()->toggle($user->artist);
 
         return redirect()->route('profile.index', $user->username);
     }
@@ -120,6 +123,7 @@ class ProfilesController extends Controller
 
         return redirect()->route('album.show', $id);
     }
+
 
 }
 
