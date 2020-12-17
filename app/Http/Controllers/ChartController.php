@@ -6,6 +6,7 @@ use App\Models\Plans;
 use App\Models\Album;
 use App\Models\Tag;
 use App\Models\Genre;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,8 @@ class ChartController extends Controller
         $tags = Tag::all();
         $plans = Plans::get();
         $sub = Auth::user()->stripe_id;
-        return view('chart.index', compact(['albums', 'genres', 'tags', 'plans', 'sub']));
+        $users = User::all();
+        return view('chart.index', compact(['albums', 'genres', 'tags', 'plans', 'sub', 'users']));
     }
 
     public function checkSubscription()

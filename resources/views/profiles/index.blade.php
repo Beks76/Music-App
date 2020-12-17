@@ -23,7 +23,7 @@
                                 <h2>{{$user->getNameOrUsername() }}</h2>
                                 <a href="#" class="mt-2 ml-2">🎤</a>            
                             </div>  
-                            <p>followers:228k</p>      
+                            <p>Followers: {{ $followersCount }}</p>      
                         @else
                             <h2>{{$user->getNameOrUsername() }}</h2>
                         @endif

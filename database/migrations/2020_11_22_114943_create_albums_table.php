@@ -16,12 +16,11 @@ class CreateAlbumsTable extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('artist');
             $table->year('year');
             $table->string('cover')->nullable();
             $table->timestamps();
 
-
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('genre_id')->nullable()->constrained()->onDelete('set null');
         });
     }

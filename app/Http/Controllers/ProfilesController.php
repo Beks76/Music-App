@@ -21,8 +21,15 @@ class ProfilesController extends Controller
         if(!$user) {
             return abort(404);
         }
-
+        
         $albums =$user->albums()->get();
+
+        if($user->hasAnyRole('artist'))
+        {
+            $followersCount = $user->artist->followers->count();
+            return view('profiles.index', compact(['albums', 'user', 'followersCount']));
+        }
+
         return view('profiles.index', compact(['albums', 'user']));
     }
 

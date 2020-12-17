@@ -87,7 +87,14 @@
                                                <a href=""> #{{$tag->name}}</a>
                                             @endforeach
                                         </p>
-                                        <p>{{ $album->name }} - {{ $album->artist }}</p>
+                                        <p>
+                                            {{ $album->name }} - 
+                                            @foreach ($users as $user)
+                                                @if ($user->id == $album->user_id)
+                                                    <a href="{{ route('profile.index', $user->username) }}">{{ $user->getNameOrUsername() }}</a>
+                                                @endif
+                                            @endforeach
+                                        </p>
                                     </div>
                                 </div>
                             </div>
