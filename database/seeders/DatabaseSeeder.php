@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Artist;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,7 +27,16 @@ class DatabaseSeeder extends Seeder
             );
         });
         
-        \App\Models\Artist::factory(count(\App\Models\Role::find(3)->users()->get()->pluck('id')))->create();
+        $artist_id = \App\Models\Role::find(3)->users()->get()->pluck('id');
+
+        foreach ($artist_id as $id) {
+            Artist::create([
+                'bio'=> 'lorem ipsum lorem ipsum 2017 lorem lorem ipsum upsins 2912',
+                'user_id' => $id,
+            ]);
+        }
+
+        // \App\Models\Artist::factory(count(\App\Models\Role::find(3)->users()->get()->pluck('id')))->create();
 
         \App\Models\Genre::factory(5)->create();
         \App\Models\Album::factory(10)->create();

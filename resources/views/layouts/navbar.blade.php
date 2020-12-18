@@ -21,10 +21,10 @@
                             <nav class="nav">
                                 <ul class="menu d-flex">
                                     <li class="menu__item">
-                                        <a href="{{route('chart.index')}}">Home</a>
+                                        <a href="{{ route('chart.index') }}">Home</a>
                                     </li>
                                     <li class="menu__item">
-                                        <a href="devices.html">Artists</a>
+                                        <a href="#">Artists</a>
                                     </li>
                                     <li class="menu__item">
                                         <a href="{{ route('profile.index', Auth::user()->username) }}">{{ Auth::user()->getNameOrUsername() }}</a>

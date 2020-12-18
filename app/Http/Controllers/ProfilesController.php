@@ -25,7 +25,7 @@ class ProfilesController extends Controller
         $albums =$user->albums()->get();
 
         if($user->hasAnyRole('artist'))
-        {
+        {   
             $followersCount = $user->artist->followers->count();
             return view('profiles.index', compact(['albums', 'user', 'followersCount']));
         }

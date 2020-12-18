@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Album;
-use App\Models\Genre;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class searchController extends Controller
@@ -38,6 +38,13 @@ class searchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function artists() 
+    {
+        $users = User::all();
+        return view('search.artists', compact('users'));
+    }
+
     public function create()
     {
         //
