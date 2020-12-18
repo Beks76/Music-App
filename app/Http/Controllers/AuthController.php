@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -45,12 +46,13 @@ class AuthController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        User::create([
+        $user = User::create([
             'email' => $request->input('email'),
             'username' => $request->input('username'),
             'password' => bcrypt($request->input('password')),
         ]);
-
+        $role = Role::find(['id'=>1]);
+        $user->roles()->attach($role);
         return redirect()->route('home.index')->with('success', 'You are registered!');
     }
 
@@ -61,7 +63,7 @@ class AuthController extends Controller
         return redirect()->route('home.index');
     }
 
-    // protected function validatedData() 
+    // protected function validatedData()
     // {
     //     return request()->validate([
     //         'email' => 'required|unique:users|email|max:255',

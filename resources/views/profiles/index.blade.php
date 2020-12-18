@@ -21,9 +21,9 @@
                         @if ($user->hasAnyRole('artist'))
                             <div class="d-flex ">
                                 <h2>{{$user->getNameOrUsername() }}</h2>
-                                <a href="#" class="mt-2 ml-2">🎤</a>            
-                            </div>  
-                            <p>followers: {{ $followersCount }}</p>      
+                                <a href="#" class="mt-2 ml-2">🎤</a>
+                            </div>
+                            <p>followers: {{ $followersCount }}</p>
                         @else
                             <h2>{{$user->getNameOrUsername() }}</h2>
                         @endif
@@ -37,14 +37,19 @@
 
                             @endif
 
+                            <div class="btn-group" role="group">
                             @if (Auth::user()->id == $user->id)
                                 <a href="{{ route('profile.edit', Auth::user()->id) }}" class="btn">Edit</a>
-                                @if(isset($sub))
-                                    <a id="subs" class="btn btn-default" data-toggle="modal" data-target="#cancel">Cancel Subscription</a>
-                                @else
-                                    <a id="subs" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">Get Subscription</a>
-                                @endif
+
+                                @if ($role->name!='admin')
+                                        @if(isset($sub))
+                                            <a id="subs" class="btn" data-toggle="modal" data-target="#cancel">Unsubscribe</a>
+                                        @else
+                                            <a id="subs" class="btn" data-toggle="modal" data-target="#exampleModal">Subscribe</a>
+                                        @endif
+                                    @endif
                             @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,7 +106,7 @@
 
                                 <div class="col-lg">
                                     <label for="plan-silver">
-                                        <div class="col"> <img src="https://placeimg.com/150/265/any?" width="100%"> </div>
+                                        <div class="col"> <img src="{{ $plan->image }}" width="100%"> </div>
                                     </label><br>
                                     <label for="plan-silver">
                                         <span class="plan-name"><p class="text-secondary">{{$plan->title}}</p></span>
@@ -111,7 +116,7 @@
                                     </label>
                                     <br>
                                     <a href="{{ route('payments', ['plan' => $plan->id]) }}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
-                                        <i class="material-icons">SEE MORE</i>
+                                        <i class="material-icons">SUBSCRIBE</i>
                                     </a>
                                 </div>
 
@@ -122,7 +127,8 @@
                     <div class="modal-footer">
                         <h2>Woohoo</h2>
                         <p class="text-center"><small class="text-muted">Thank you for your subscription. You'll be sent the next issue of our newspaper shortly </small></p>
-                        <div class="d-flex justify-content-center"> <button type="button" class="btn btn-success btn-just-icon">ok</button>
+                        <br>
+                        <div class="d-flex justify-content-center"> <button type="button" data-dismiss="modal" class="btn btn-success btn-just-icon">ok</button>
                             <p><strong></strong></p>
                         </div>
                     </div>
