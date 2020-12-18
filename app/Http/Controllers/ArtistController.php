@@ -13,4 +13,14 @@ class ArtistController extends Controller
         $users = User::all();
         return view('artist.index', compact('users'));
     }
+
+    public function station()
+    {
+        return view('artist.station');
+    }
+
+    public function album_create()
+    {
+        dd('create');
+    }
 }

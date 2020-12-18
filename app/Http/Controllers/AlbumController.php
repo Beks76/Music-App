@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Album;
 use App\Models\Tag;
 use App\Models\Genre;
-use App\Models\Song;
+use App\Models\User;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 
@@ -20,7 +20,8 @@ class AlbumController extends Controller
     {
         $albums = Album::all();
         $genres = Genre::all();
-        return view('album.index', compact(['albums', 'genres']));
+        $users = User::all();
+        return view('album.index', compact(['albums', 'genres', 'users']));
     }
 
     public function albumByGenre(Genre $genre)
@@ -39,7 +40,8 @@ class AlbumController extends Controller
     {
         $genres = Genre::all();
         $tags = Tag::all();
-        return view('album.create', compact(['genres', 'tags']));
+        $users = User::all();
+        return view('album.create', compact(['genres', 'tags', 'users']));
     }
 
     /**
@@ -52,7 +54,7 @@ class AlbumController extends Controller
     {
         $album = new Album();
         $album->name = $request->input('name');
-        $album->artist = $request->input('artist');
+        $album->user_id = $request->input('artist');
         $album->year = $request->input('year');
         $album->cover = $request->cover->store('uploads', 'public');
         $image = Image::make(public_path("storage/{$album->cover}"))->fit(265, 265);
@@ -109,7 +111,8 @@ class AlbumController extends Controller
         $album = Album::find($id);
         $gen = Genre::all();
         $tags = Tag::all();
-        return view('album.edit', compact(['album', 'gen', 'tags']));
+        $users = User::all();
+        return view('album.edit', compact(['album', 'gen', 'tags', 'users']));
     }
 
     /**
@@ -120,9 +123,9 @@ class AlbumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
         $album = Album::find($id);
-        $album->update($request->only('name', 'artist', 'year', 'genre_id'));
+        $album->update($request->only('name', 'user_id', 'year', 'genre_id'));
         $album->tags()->attach($request->only('tag'));
         return redirect()->route('album.index')->with('success', ' Album was updated successfully with ID: '.$album->id);
     }

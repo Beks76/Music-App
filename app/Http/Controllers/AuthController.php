@@ -30,6 +30,7 @@ class AuthController extends Controller
         {
             return redirect()->route('backend.index')->with('success', 'You are logged in!');
         }
+
         return redirect()->route('profile.index', Auth::user()->username)->with('success', 'You are logged in!');
     }
 
