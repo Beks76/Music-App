@@ -39,13 +39,12 @@
 
                             @if (Auth::user()->id == $user->id)
                                 <a href="{{ route('profile.edit', Auth::user()->id) }}" class="btn">Edit</a>
-                            @endif
-
                                 @if(isset($sub))
                                     <a id="subs" class="btn btn-default" data-toggle="modal" data-target="#cancel">Cancel Subscription</a>
                                 @else
                                     <a id="subs" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">Get Subscription</a>
                                 @endif
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -89,67 +88,69 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document" >
-            <div class="modal-content">
-                <div class="modal-header border-none"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>
-                <div class="modal-body">
+    @if (Auth::user()->id == $user->id)
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" >
+                <div class="modal-content">
+                    <div class="modal-header border-none"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>
+                    <div class="modal-body">
 
 
-                    <div class="row md-6">
-                        @foreach($plans as $plan)
+                        <div class="row md-6">
+                            @foreach($plans as $plan)
 
-                            <div class="col-lg">
-                                <label for="plan-silver">
-                                    <div class="col"> <img src="https://placeimg.com/150/265/any?" width="100%"> </div>
-                                </label><br>
-                                <label for="plan-silver">
-                                    <span class="plan-name"><p class="text-secondary">{{$plan->title}}</p></span>
-                                </label><br>
-                                <label for="plan-silver">
-                                    <span class="plan-price"><p class="text-secondary"><small>{{$plan->price}}</small></p></span>
-                                </label>
-                                <br>
-                                <a href="{{ route('payments', ['plan' => $plan->id]) }}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
-                                    <i class="material-icons">SEE MORE</i>
-                                </a>
-                            </div>
+                                <div class="col-lg">
+                                    <label for="plan-silver">
+                                        <div class="col"> <img src="https://placeimg.com/150/265/any?" width="100%"> </div>
+                                    </label><br>
+                                    <label for="plan-silver">
+                                        <span class="plan-name"><p class="text-secondary">{{$plan->title}}</p></span>
+                                    </label><br>
+                                    <label for="plan-silver">
+                                        <span class="plan-price"><p class="text-secondary"><small>{{$plan->price}}</small></p></span>
+                                    </label>
+                                    <br>
+                                    <a href="{{ route('payments', ['plan' => $plan->id]) }}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
+                                        <i class="material-icons">SEE MORE</i>
+                                    </a>
+                                </div>
 
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
-                </div>
 
-                <div class="modal-footer">
-                    <h2>Woohoo</h2>
-                    <p class="text-center"><small class="text-muted">Thank you for your subscription. You'll be sent the next issue of our newspaper shortly </small></p>
-                    <div class="d-flex justify-content-center"> <button type="button" class="btn btn-success btn-just-icon">ok</button>
-                        <p><strong></strong></p>
+                    <div class="modal-footer">
+                        <h2>Woohoo</h2>
+                        <p class="text-center"><small class="text-muted">Thank you for your subscription. You'll be sent the next issue of our newspaper shortly </small></p>
+                        <div class="d-flex justify-content-center"> <button type="button" class="btn btn-success btn-just-icon">ok</button>
+                            <p><strong></strong></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-dark" id="exampleModalLabel">Submition</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body "><p class="text-danger">Are you sure?</p></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <br>
-                    <form id="payment-form" action="{{ route('payments.cancel') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </form>
+        <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="exampleModalLabel">Submition</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body "><p class="text-danger">Are you sure?</p></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <br>
+                        <form id="payment-form" action="{{ route('payments.cancel') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
 @endsection
 

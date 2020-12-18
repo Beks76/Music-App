@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagController;
@@ -90,6 +91,8 @@ Route::patch('/profile/{profile}', [ProfilesController::class, 'update'])->middl
 Route::get('/profile/like/{album_id}', [ProfilesController::class, 'like'])->middleware('auth')->name('profile.like');
 Route::get('/profile/follow/{artist_id}', [ProfilesController::class, 'follow'])->middleware('auth')->name('profile.follow');
 Route::get('/profile/album/{album_id}/delete', [ProfilesController::class, 'delete_album'])->middleware('auth')->name('profile.album_delete');
+
+Route::get('/artist', [ArtistController::class, 'index'])->middleware('auth')->name('artist.index');
 
 Route::get('/chart', [ChartController::class, 'index'])->middleware('auth')->name('chart.index');
 

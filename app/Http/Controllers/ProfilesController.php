@@ -24,6 +24,13 @@ class ProfilesController extends Controller
         }
         
         $albums =$user->albums()->get();
+
+        if($user->hasAnyRole('artist'))
+        {   
+            $followersCount = $user->artist->followers->count();
+            return view('profiles.index', compact(['albums', 'user', 'followersCount']));
+        }
+        
         $plans = Plans::get();
         $sub = Auth::user()->stripe_id;
         return view('profiles.index', compact(['albums', 'user', 'sub', 'plans']));
