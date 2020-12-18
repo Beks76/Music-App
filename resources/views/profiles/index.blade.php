@@ -36,15 +36,18 @@
                                 @endif
 
                             @endif
-
-                            @if (Auth::user()->id == $user->id)
-                                <a href="{{ route('profile.edit', Auth::user()->id) }}" class="btn">Edit</a>
-                                @if(isset($sub))
-                                    <a id="subs" class="btn btn-default" data-toggle="modal" data-target="#cancel">Cancel Subscription</a>
-                                @else
-                                    <a id="subs" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">Get Subscription</a>
-                                @endif
-                            @endif
+                                <div class="btn-group" role="group">
+                                    @if (Auth::user()->id == $user->id)
+                                            <a href="{{ route('profile.edit', Auth::user()->id) }}" class="btn">Edit</a>
+                                        @if ($role->name!='admin')
+                                            @if(isset($sub))
+                                                <a id="subs" class="btn" data-toggle="modal" data-target="#cancel">Unsubscribe</a>
+                                            @else
+                                                <a id="subs" class="btn" data-toggle="modal" data-target="#exampleModal">Subscribe</a>
+                                            @endif
+                                        @endif
+                                    @endif
+                                </div>
                         </div>
                     </div>
                 </div>

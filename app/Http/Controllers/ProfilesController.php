@@ -33,7 +33,8 @@ class ProfilesController extends Controller
 
         $plans = Plans::get();
         $sub = Auth::user()->stripe_id;
-        return view('profiles.index', compact(['albums', 'user', 'sub', 'plans']));
+        $role = Auth::user()->roles()->get()->first();
+        return view('profiles.index', compact(['albums', 'user', 'sub', 'plans', 'role']));
     }
 
     /**
