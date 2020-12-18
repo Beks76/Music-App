@@ -93,6 +93,8 @@ Route::get('/profile/follow/{artist_id}', [ProfilesController::class, 'follow'])
 Route::get('/profile/album/{album_id}/delete', [ProfilesController::class, 'delete_album'])->middleware('auth')->name('profile.album_delete');
 
 Route::get('/artist', [ArtistController::class, 'index'])->middleware('auth')->name('artist.index');
+Route::get('/profile/{user}/station', [ArtistController::class, 'station'])->middleware('auth')->name('artist.station');
+Route::get('/profile/{user}/album/create', [ArtistController::class, 'album_create'])->middleware('auth')->name('artist.album_create');
 
 Route::get('/chart', [ChartController::class, 'index'])->middleware('auth')->name('chart.index');
 

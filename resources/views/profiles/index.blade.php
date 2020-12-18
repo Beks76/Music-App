@@ -44,6 +44,9 @@
                                 @else
                                     <a id="subs" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">Get Subscription</a>
                                 @endif
+                                @if (Auth::user()->hasAnyRole('artist'))
+                                    <a href="{{ route('artist.station', Auth::user()->username) }}" class="btn">Music station</a>
+                                @endif
                             @endif
                         </div>
                     </div>

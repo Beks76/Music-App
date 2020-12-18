@@ -8,7 +8,10 @@
         <div class="artists mt-4 mb-4">
             @foreach ($users as $user)
                 @if ($user->hasAnyRole('artist'))
-                    <a href="{{ route('profile.index', $user->username) }}" >{{ $user->username }}</a>    
+                    <div class="artist mt-4">
+                        <img src="https://image.flaticon.com/icons/png/128/3011/3011270.png" alt="logo">
+                        <a class="ml-4" href="{{ route('profile.index', $user->username) }}" >{{ $user->username }}  🎤</a>    
+                    </div>
                 @endif
             @endforeach
         </div>

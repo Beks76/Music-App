@@ -40,7 +40,13 @@
                             <tr>
                                 <td class="text-center">{{ $a->id }}</td>
                                 <td>{{ $a->name }}</td>
-                                <td>{{ $a->artist }}</td>
+                                <td>
+                                    @foreach ($users as $user)
+                                        @if ($user->id == $a->user_id)
+                                            {{ $user->username }}
+                                        @endif
+                                    @endforeach
+                                </td>
                                 <td>{{ $a->genre->name ?? 'None' }}</td>
                                 <td class="text-right">{{ $a->year }}</td>
                                 <td class="d-sm-flex justify-content-right">

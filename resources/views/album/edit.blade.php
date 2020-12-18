@@ -21,7 +21,17 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="lastname" class="control-label">Artist:</label>
-                        <input type="text" value="{{$album->artist}}" name="artist" class="form-control" id="lastname" placeholder="Artist">
+                        <select class="form-control" name="user_id" id="exampleFormControlSelect1">
+                            @foreach($users as $user)
+                                @if ($user->hasAnyRole('artist'))
+                                    @if ($user->id == ($album->user_id ?? null))
+                                        <option value="{{$user->id}}" selected>{{$user->username}}</option>
+                                    @else
+                                        <option value="{{$user->id}}">{{$user->username}}</option>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-3">

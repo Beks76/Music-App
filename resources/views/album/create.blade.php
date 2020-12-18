@@ -20,7 +20,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="lastname" class="control-label">Artist:</label>
-                        <input type="text" name="artist" class="form-control" id="lastname" placeholder="Artist">
+                        <select class="form-control" name="artist" id="exampleFormControlSelect1">
+                            @foreach($users as $user)
+                                @if ($user->hasAnyRole('artist'))
+                                    <option value="{{$user->id}}">{{$user->username}}</option>
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-3">
