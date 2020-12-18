@@ -104,7 +104,7 @@
 
                                 <div class="col-lg">
                                     <label for="plan-silver">
-                                        <div class="col"> <img src="https://placeimg.com/150/265/any?" width="100%"> </div>
+                                        <div class="col"> <img src="{{ $plan->image }}" width="100%"> </div>
                                     </label><br>
                                     <label for="plan-silver">
                                         <span class="plan-name"><p class="text-secondary">{{$plan->title}}</p></span>
@@ -114,7 +114,7 @@
                                     </label>
                                     <br>
                                     <a href="{{ route('payments', ['plan' => $plan->id]) }}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
-                                        <i class="material-icons">SEE MORE</i>
+                                        <i class="material-icons">SUBSCRIBE</i>
                                     </a>
                                 </div>
 
@@ -125,6 +125,7 @@
                     <div class="modal-footer">
                         <h2>Woohoo</h2>
                         <p class="text-center"><small class="text-muted">Thank you for your subscription. You'll be sent the next issue of our newspaper shortly </small></p>
+                        <br>
                         <div class="d-flex justify-content-center"> <button type="button" class="btn btn-success btn-just-icon">ok</button>
                             <p><strong></strong></p>
                         </div>
