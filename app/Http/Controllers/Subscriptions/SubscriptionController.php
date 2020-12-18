@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Subscriptions;
 use App\Models\Plans;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Stripe;
 use Session;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
@@ -33,6 +35,17 @@ class SubscriptionController extends Controller
         $request->user()->newSubscription('default', $plan->stripe_id)->create($request->token);
 
         return redirect()->route('chart.index')->with('success', ' Thank you for your subscription!');
+    }
+
+    public function cancel(Request $request){
+        $request->user()
+            ->subscription('default')
+            ->cancelNow();
+        $user = Auth::user()->id;
+        User::where('id', $user)->update(['stripe_id'=>null, 'card_brand'=>null, 'card_last_four'=>null]);
+
+
+        return redirect()->route('chart.index')->with('success', ' Your subscription was successful canceled!');
     }
 
 

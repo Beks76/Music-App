@@ -25,12 +25,12 @@ class ChartController extends Controller
         $plans = Plans::get();
         $sub = Auth::user()->stripe_id;
         $users = User::all();
-        return view('chart.index', compact(['albums', 'genres', 'tags', 'plans', 'sub', 'users']));
+        $role = Auth::user()->roles()->get()->first();
+        return view('chart.index', compact(['albums', 'genres', 'tags', 'plans', 'sub', 'users', 'role']));
     }
 
     public function checkSubscription()
     {
-
         $user = User::all();
         return view('chart.index', compact(['albums', 'genres', 'tags', 'plans']));
     }
