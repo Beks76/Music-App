@@ -39,7 +39,10 @@
                                 <div class="btn-group" role="group">
                                     @if (Auth::user()->id == $user->id)
                                             <a href="{{ route('profile.edit', Auth::user()->id) }}" class="btn">Edit</a>
-                                        @if ($role->name!='admin')
+                                            @if (Auth::user()->hasAnyRole('artist'))
+                                                <a href="{{ route('profile.station', Auth::user()->username) }}" class="btn">Music</a>
+                                            @endif
+                                        @if ($role->name !='admin')
                                             @if(isset($sub))
                                                 <a id="subs" class="btn" data-toggle="modal" data-target="#cancel">Unsubscribe</a>
                                             @else
@@ -56,17 +59,23 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="p_category d-flex justify-content-between mt-4 mb-4">
-                    <a class="nav-item nav-link" href="#">Tracks</a>
-                    <a class="nav-item nav-link" href="#">Albums</a>
-                    <a class="nav-item nav-link" href="#">Artists</a>
-                    <a class="nav-item nav-link" href="#">Podcasts</a>
+                    <a class="nav-item nav-link" href="{{ route('profile.index', ['user' => $user->username, 'category' => 'albums']) }}">Albums</a>
+                    <a class="nav-item nav-link" href="{{ route('profile.index', ['user' => $user->username, 'category' => 'artists']) }}">Artists</a>
+                    @if ($user->hasAnyRole('artist'))
+                        @if ($user->id == Auth::user()->id)
+                            <a class="nav-item nav-link" href="{{ route('profile.index', ['user' => $user->username, 'category' => 'artist_album']) }}">My albums</a>
+                        @else
+                            <a class="nav-item nav-link" href="{{ route('profile.index', ['user' => $user->username, 'category' => 'artist_album']) }}">Posted albums</a>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-8">
-                <div class="albums">
-                    @foreach($albums as $album)
+                <div class="profile_result">
+                    @if (isset($albums))
+                        @foreach($albums as $album)
                         <div class="col-lg-3">
                             <div class="tracks mt-4 mb-4">
                                 <div class="tracks__item">
@@ -86,7 +95,39 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                        @endforeach
+                    @endif
+                    @if (isset($followings))
+                        @foreach ($followings as $user)
+                            <div class="artist mt-4 mb-4">
+                                <img src="https://image.flaticon.com/icons/png/128/3011/3011270.png" alt="logo">
+                                <a class="ml-4" href={{ route('profile.index', $user->username) }} >{{ $user->username }}  🎤</a>    
+                            </div>
+                        @endforeach
+                    @endif
+                    @if (isset($artist_albums))
+                        @foreach($artist_albums as $album)
+                        <div class="col-lg-3">
+                            <div class="tracks mt-4 mb-4">
+                                <div class="tracks__item">
+                                    <a href="{{ route('album.show', $album->id) }}">
+                                        @if (Str::startsWith($album->cover, 'http'))
+                                            <img src="{{ $album->cover }}" alt="">
+                                        @else
+                                            <img src="/storage/{{$album->cover }}" alt="">
+                                        @endif
+                                    </a>
+                                    <p class="track__text">
+                                        <p>{{ $album->name }} - {{ $album->artist }}</p>
+                                        @foreach ($album->tags()->get() as $tag)
+                                            <a href=""> #{{$tag->name}}</a>
+                                        @endforeach
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

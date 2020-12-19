@@ -24,7 +24,7 @@
                                         <a href="{{ route('chart.index') }}">Home</a>
                                     </li>
                                     <li class="menu__item">
-                                        <a href="{{ route('artist.index') }}">Artists</a>
+                                        <a href="{{ route('profile.artists') }}">Artists</a>
                                     </li>
                                     <li class="menu__item">
                                         <a href="{{ route('profile.index', Auth::user()->username) }}">{{ Auth::user()->getNameOrUsername() }}</a>

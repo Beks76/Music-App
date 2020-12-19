@@ -23,6 +23,7 @@
                             <h2>{{$album->name}}</h2>
                             <p>Released: {{$album->year}}</p>
                             <p>Genre: {{$album->genre->name ?? 'None'}}</p>
+                            <p>Artist: <a href="{{ route('profile.index', $user->username) }}"> {{$user->username ?? 'None'}} </a></p>
                             <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, deserunt autem nesciunt vero rem obcaecati porro dolorem nostrum alias modi, quidem, unde quae quam soluta quibusdam ipsum perferendis qui molestiae.</p>
 
                             <div class="mt-4">
@@ -40,7 +41,20 @@
                     @if (auth()->user()->albums()->pluck('album_id')->contains($album->id))
                         <a href="{{ route('profile.album_delete', $album->id) }}" class="btn">delete</a>
                     @else
-                        <a href="{{ route('profile.like', $album->id) }}" class="btn">like</a>
+                        <a href="{{ route('profile.like', $album->id) }}" class="btn mr-1">like</a>
+                    @endif
+                    @if($album->user_id == auth()->user()->id)
+                        <a href="{{ route('profile.album_edit', [auth()->user()->username, $album->id]) }}" class="btn">edit</a>
+
+                        <div class="mt-4">
+                            <form action="{{route('album.destroy', $album->id)}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button rel="tooltip" class="btn" data-original-title="" title="">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </form>
+                        </div>
                     @endif
                 </div>
             </div>

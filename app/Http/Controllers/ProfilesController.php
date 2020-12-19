@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Album;
 use App\Models\Plans;
 use App\Models\User;
-use App\Models\Artist;
+use App\Models\Genre;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,18 +24,52 @@ class ProfilesController extends Controller
             return abort(404);
         }
 
-        $albums =$user->albums()->get();
+        $plans = Plans::get();
+        $sub = Auth::user()->stripe_id;
+        $role = Auth::user()->roles()->get()->first();
+
+
+        if(request()->category) {
+            if(request()->category == 'albums') {
+                $albums = $user->albums()->get();
+                if($user->hasAnyRole('artist'))
+                {
+                    $followersCount = $user->artist->followers->count();
+                    return view('profiles.index', compact(['user', 'sub', 'plans', 'role', 'followersCount', 'albums']));
+                }
+        
+                return view('profiles.index', compact(['user', 'sub', 'plans', 'role', 'albums']));
+            }
+            elseif(request()->category == 'artists') {
+                $id = $user->following()->get()->pluck('user_id');
+                $followings = User::find($id);
+                if($user->hasAnyRole('artist'))
+                {
+                    $followersCount = $user->artist->followers->count();
+                    return view('profiles.index', compact(['user', 'sub', 'plans', 'role', 'followersCount', 'followings']));
+                }
+        
+                return view('profiles.index', compact(['user', 'sub', 'plans', 'role', 'followings']));
+            }
+            else {
+                $artist_albums = Album::where('user_id', $user->id)->get();
+                if($user->hasAnyRole('artist'))
+                {
+                    $followersCount = $user->artist->followers->count();
+                    return view('profiles.index', compact(['user', 'sub', 'plans', 'role', 'followersCount', 'artist_albums']));
+                }
+        
+                return view('profiles.index', compact(['user', 'sub', 'plans', 'role', 'artist_albums']));
+            }
+        }
 
         if($user->hasAnyRole('artist'))
         {
             $followersCount = $user->artist->followers->count();
-            return view('profiles.index', compact(['albums', 'user', 'followersCount']));
+            return view('profiles.index', compact(['user', 'sub', 'plans', 'role', 'followersCount']));
         }
 
-        $plans = Plans::get();
-        $sub = Auth::user()->stripe_id;
-        $role = Auth::user()->roles()->get()->first();
-        return view('profiles.index', compact(['albums', 'user', 'sub', 'plans', 'role']));
+        return view('profiles.index', compact(['user', 'sub', 'plans', 'role']));
     }
 
     /**
@@ -132,6 +167,36 @@ class ProfilesController extends Controller
         return redirect()->route('album.show', $id);
     }
 
+
+    // Artist
+
+    public function station($username)
+    {
+        return view('artist.station');
+    }
+
+    public function artists()
+    {
+        $users = User::all();
+        return view('artist.index', compact('users'));
+    }
+
+    public function album_create()
+    {
+        $genres = Genre::all();
+        $tags = Tag::all();
+        return view('artist.album_create', compact(['genres', 'tags']));
+    }
+
+    public function album_edit($username, $id)
+    {
+        $album = Album::find($id);
+        $gen = Genre::all();
+        $tags = Tag::all();
+        $user = User::where('username', $username)->first();
+
+        return view('artist.album_edit', compact(['album', 'gen', 'tags', 'user']));
+    }
 
 }
 
