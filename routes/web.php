@@ -17,6 +17,7 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\searchController;
 use App\Http\Controllers\Subscriptions\SubscriptionController;
+use App\Models\Album;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,6 +85,34 @@ Route::redirect('/', '/home');
 Route::resource('/home', HomeController::class);
 
 Route::get('/search', [searchController::class, 'index'])->middleware('auth')->name('search.index');
+Route::get('/search/{id}', function ($id)  {
+    switch ($id) {
+        case 'asc' :
+            return view('search.index', [
+                'result' => Album::orderBy('name', 'asc')->get(),
+                'sort' => "desc"
+            ]);
+        case 'desc' :
+            return view('search.index', [
+                'result' => Album::orderBy('name', 'desc')->get(),
+                'sort' => "asc"
+            ]);
+    }
+});
+Route::get('/searchyear/{id}', function ($id)  {
+    switch ($id) {
+        case 'asc' :
+            return view('search.index', [
+                'result' => Album::orderBy('year', 'asc')->get(),
+                'sort' => "desc"
+            ]);
+        case 'desc' :
+            return view('search.index', [
+                'result' => Album::orderBy('year', 'desc')->get(),
+                'sort' => "asc"
+            ]);
+    }
+});
 
 Route::get('user/{user}/profile', [ProfilesController::class, 'index'])->middleware('auth')->name('profile.index');
 Route::get('/user/{user}/station', [ProfilesController::class, 'station'])->middleware('artist')->name('profile.station');

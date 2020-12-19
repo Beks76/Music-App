@@ -101,7 +101,7 @@
                         @foreach ($followings as $user)
                             <div class="artist mt-4 mb-4">
                                 <img src="https://image.flaticon.com/icons/png/128/3011/3011270.png" alt="logo">
-                                <a class="ml-4" href={{ route('profile.index', $user->username) }} >{{ $user->username }}  🎤</a>    
+                                <a class="ml-4" href={{ route('profile.index', $user->username) }} >{{ $user->username }}  🎤</a>
                             </div>
                         @endforeach
                     @endif
@@ -167,7 +167,7 @@
                         <h2>Woohoo</h2>
                         <p class="text-center"><small class="text-muted">Thank you for your subscription. You'll be sent the next issue of our newspaper shortly </small></p>
                         <br>
-                        <div class="d-flex justify-content-center"> <button type="button" class="btn btn-success btn-just-icon">ok</button>
+                        <div class="d-flex justify-content-center"> <button type="button" data-dismiss="modal" class="btn btn-success btn-just-icon">ok</button>
                             <p><strong></strong></p>
                         </div>
                     </div>

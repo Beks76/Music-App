@@ -15,12 +15,12 @@ class searchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $query = request('query');
         if(!$query) {
             return redirect()->back();
         }
-        
+
         $albums = Album::all();
 
         $result = $albums->filter(function ($album) {
@@ -29,9 +29,10 @@ class searchController extends Controller
                 return $album;
             }
         });
-        
+
         return view('search.index', compact('result'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +40,7 @@ class searchController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function artists() 
+    public function artists()
     {
         $users = User::all();
         return view('search.artists', compact('users'));
