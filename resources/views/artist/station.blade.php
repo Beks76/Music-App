@@ -13,7 +13,8 @@
             <div class="col-lg-4">
                 <div class="d-flex flex-column mb-4">
                     <a class="btn btn-info btn-just-icon btn-sm mt-4" href="{{ route('profile.album_create', Auth::user()->username) }}">Create album</a>
-                    <a class="btn btn-info btn-just-icon btn-sm mt-4" href="{{ route('song.index') }}">Upload song</a>
+                    {{-- <a class="btn btn-info btn-just-icon btn-sm mt-4" href="{{ route('profile.song_create', Auth::user()->username) }}">Upload song</a> --}}
+                    <a class="btn btn-info btn-just-icon btn-sm mt-4" href="{{ route('profile.album_create', Auth::user()->username) }}">My songs</a>
                 </div>
             </div>
         </div>

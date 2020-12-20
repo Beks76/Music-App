@@ -20,9 +20,7 @@
                     <div class="form-group">
                         <label for="lastname" class="control-label">Artist:</label>
                         <select class="form-control" name="artist" id="exampleFormControlSelect1">
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->username }}</option>
-                            @endforeach
+                            <option value="{{ Auth::user()->id }}">{{ Auth::user()->username }}</option>
                         </select>
                     </div>
                 </div>
@@ -32,7 +30,9 @@
                         <select class="form-control" name="album" id="exampleFormControlSelect1">
                             <option value="0">None</option>
                             @foreach($albums as $album)
-                                <option value="{{$album->id}}">{{$album->name}} - {{ $users->find($album->user_id)->username }}</option>
+                                @if ($album->user_id == Auth::user()->id)
+                                    <option value="{{$album->id}}">{{$album->name}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>

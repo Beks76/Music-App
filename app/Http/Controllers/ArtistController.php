@@ -19,8 +19,5 @@ class ArtistController extends Controller
         return view('artist.station');
     }
 
-    public function album_create()
-    {
-        dd('create');
-    }
+
 }

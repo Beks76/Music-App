@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
+use App\Models\Role;
 use App\Models\Album;
 use Illuminate\Http\Request;
 
@@ -17,14 +18,15 @@ class SongController extends Controller
     public function create()
     {
         $albums = Album::all();
-        return view ('song.create', compact('albums'));
+        $users = Role::find(3)->users()->get();
+        return view ('song.create', compact(['albums', 'users']));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-        'name' => 'string|required',
-        'song' => 'file|required'
+            'name' => 'string|required',
+            'song' => 'file|required'
         ]);
 
         $album = Album::where('id', $request->album)->first()->name;

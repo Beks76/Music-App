@@ -121,9 +121,11 @@ Route::get('/user/{user}/edit', [ProfilesController::class, 'edit'])->middleware
 Route::patch('/user/{profile}', [ProfilesController::class, 'update'])->middleware('auth')->name('profile.update');
 Route::get('/user/like/{album_id}', [ProfilesController::class, 'like'])->middleware('auth')->name('profile.like');
 Route::get('/user/follow/{artist_id}', [ProfilesController::class, 'follow'])->middleware('auth')->name('profile.follow');
-Route::get('/user/album/{album_id}/delete', [ProfilesController::class, 'delete_album'])->middleware('auth')->name('profile.album_delete');
-Route::get('/user/{user}/album/create', [ProfilesController::class, 'album_create'])->middleware('auth')->name('profile.album_create');
-Route::get('/user/{user}/album/{album}/edit', [ProfilesController::class, 'album_edit'])->middleware('auth')->name('profile.album_edit');
+Route::get('/user/album/{album_id}/delete', [ProfilesController::class, 'delete_album'])->middleware('artist')->name('profile.album_delete');
+Route::get('/user/{user}/album/create', [ProfilesController::class, 'album_create'])->middleware('artist')->name('profile.album_create');
+Route::get('/user/{user}/album/{album}/edit', [ProfilesController::class, 'album_edit'])->middleware('artist')->name('profile.album_edit');
+// Route::get('user/{user}/song/create', [ProfilesController::class, 'song_create'])->middleware('artist')->name('profile.song_create');
+
 Route::get('/artists', [ProfilesController::class, 'artists'])->middleware('auth')->name('profile.artists');
 
 

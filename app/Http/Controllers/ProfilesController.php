@@ -198,5 +198,13 @@ class ProfilesController extends Controller
         return view('artist.album_edit', compact(['album', 'gen', 'tags', 'user']));
     }
 
+    // public function song_create($username)
+    // {
+    //     $user = User::where('username', $username)->first();
+    //     $albums = Album::all();
+
+    //     return view('artist.song_create', compact(['user', 'albums']));
+    // }
+
 }
 
