@@ -6,6 +6,7 @@
 
     <div class="container">
         <div class="artists mt-4 mb-4">
+            <h3>Artists:</h3>
             @foreach ($users as $user)
                 @if ($user->hasAnyRole('artist'))
                     <div class="artist mt-4">

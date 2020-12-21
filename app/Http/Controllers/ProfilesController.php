@@ -7,6 +7,7 @@ use App\Models\Plans;
 use App\Models\User;
 use App\Models\Genre;
 use App\Models\Tag;
+use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -198,13 +199,31 @@ class ProfilesController extends Controller
         return view('artist.album_edit', compact(['album', 'gen', 'tags', 'user']));
     }
 
-    // public function song_create($username)
-    // {
-    //     $user = User::where('username', $username)->first();
-    //     $albums = Album::all();
+    public function songs($username)
+    {
+        $user = User::where('username', $username)->first();
+        $album_id = $user->albums()->get()->pluck('id');
 
-    //     return view('artist.song_create', compact(['user', 'albums']));
-    // }
+        if(Auth::user()->username != $username) {
+            return redirect()->back();
+        }
+
+        $songs = Song::all();
+
+        return view('artist.songs', compact(['songs', 'album_id']));
+    }
+
+    public function song_create($username)
+    {
+        $user = User::where('username', $username)->first();
+        $albums = Album::where('user_id', $user->id)->get();
+
+        if(sizeof($albums) == 0) {
+            return redirect()->back()->with('success', "You don't have any album");
+        }
+
+        return view('artist.song_create', compact(['user', 'albums']));
+    }
 
 }
 

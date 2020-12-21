@@ -2,17 +2,18 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="navbar">
+                <div class="navbar d-flex align-items-center">
                     <div class="col-lg-2">
                         <a href="{{ route('home.index') }}" class="logo">{{ config('app.name') }}</a>
                     </div>
                     @if (Auth::check())
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 container-4">
                             <form method="GET" action="{{ route('search.index') }}" class="navbar-form" role="search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="query">
+                                    <input type="search" id="search" placeholder="Search" name="query">
                                     <div class="input-group-btn">
-                                        <button class="btn-default" type="submit">Search</button>
+                                        <button class="icon"><i class="fa fa-search"></i>
+                                        {{-- <button class="btn-default" type="submit">Search</button> --}}
                                     </div>
                                 </div>
                             </form>

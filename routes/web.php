@@ -78,7 +78,7 @@ Route::delete('/role/{role}', [RoleController::class, 'destroy'])->middleware(['
 Route::get('/role/{role}/edit', [RoleController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('role.edit');
 
 Route::get('/song', [SongController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('song.index');
-Route::post('/song', [SongController::class, 'store'])->middleware(['auth', 'auth.admin'])->name('song.store');
+Route::post('/song', [SongController::class, 'store'])->middleware('auth')->name('song.store');
 Route::get('/song/create', [SongController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('song.create');
 
 Route::redirect('/', '/home');
@@ -124,7 +124,8 @@ Route::get('/user/follow/{artist_id}', [ProfilesController::class, 'follow'])->m
 Route::get('/user/album/{album_id}/delete', [ProfilesController::class, 'delete_album'])->middleware('artist')->name('profile.album_delete');
 Route::get('/user/{user}/album/create', [ProfilesController::class, 'album_create'])->middleware('artist')->name('profile.album_create');
 Route::get('/user/{user}/album/{album}/edit', [ProfilesController::class, 'album_edit'])->middleware('artist')->name('profile.album_edit');
-// Route::get('user/{user}/song/create', [ProfilesController::class, 'song_create'])->middleware('artist')->name('profile.song_create');
+Route::get('user/{user}/song/create', [ProfilesController::class, 'song_create'])->middleware('artist')->name('profile.song_create');
+Route::get('user/{user}/songs', [ProfilesController::class, 'songs'])->middleware('artist')->name('profile.songs');
 
 Route::get('/artists', [ProfilesController::class, 'artists'])->middleware('auth')->name('profile.artists');
 

@@ -28,11 +28,8 @@
                     <div class="form-group">
                         <label for="lastname" class="control-label">Album:</label>
                         <select class="form-control" name="album" id="exampleFormControlSelect1">
-                            <option value="0">None</option>
                             @foreach($albums as $album)
-                                @if ($album->user_id == Auth::user()->id)
-                                    <option value="{{$album->id}}">{{$album->name}}</option>
-                                @endif
+                                <option value="{{$album->id}}">{{$album->name}}</option>
                             @endforeach
                         </select>
                     </div>
