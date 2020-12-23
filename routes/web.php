@@ -64,7 +64,7 @@ Route::get('/user/create', [UserRoleController::class, 'create'])->middleware(['
 // Route::get('/tag/{create}', [GenrTagControllereController::class, 'show'])->middleware('auth')->name('tag.show');
 Route::patch('/user/{user}', [UserRoleController::class, 'update'])->middleware(['auth', 'auth.admin'])->name('user.update');
 Route::delete('/user/{user}', [UserRoleController::class, 'destroy'])->middleware(['auth', 'auth.admin'])->name('user.destroy');
-Route::get('/user/{user}/edit', [UserRoleController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('user.edit');
+Route::get('/user/{users}/edit', [UserRoleController::class, 'edit'])->middleware(['auth', 'auth.admin'])->name('user.edit');
 Route::get('/user/{user}', [UserRoleController::class, 'show'])->middleware(['auth', 'auth.admin'])->name('user.show');
 Route::delete('/user/{user}/destroyrole', [UserRoleController::class, 'destroyRole'])->middleware(['auth', 'auth.admin'])->name('user.destroyrole');
 

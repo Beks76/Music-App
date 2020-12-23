@@ -48,6 +48,8 @@
                                             @else
                                                 <a id="subs" class="btn" data-toggle="modal" data-target="#exampleModal">Subscribe</a>
                                             @endif
+                                        @elseif($role->name =='admin')
+                                            <a href="{{ route('backend.index') }}" class="btn">Panel</a>
                                         @endif
                                     @endif
                                 </div>

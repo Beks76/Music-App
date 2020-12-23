@@ -100,7 +100,7 @@ class UserRoleController extends Controller
         $user = User::find($id);
         $user->update($request->only('fname', 'lname', 'email', 'role'));
         $user->roles()->attach($request->only('role'));
-        
+
         if($request->input('role') == 3) {
             $artist->bio = 'N/A';
             $artist->user_id = $user->id;
@@ -125,8 +125,10 @@ class UserRoleController extends Controller
 
         $artist = new Artist();
         $artist = Artist::where('user_id', $id)->first();
-        $artist->delete();
-
+        if ($artist != null) {
+            $artist->delete();
+            return redirect()->route('user.index')->with('success', ' User was deleted successfully with ID: '.$user->id);
+        }
         return redirect()->route('user.index')->with('success', ' User was deleted successfully with ID: '.$user->id);
     }
 
@@ -138,8 +140,10 @@ class UserRoleController extends Controller
 
         $artist = new Artist();
         $artist = Artist::where('user_id', $id)->first();
-        $artist->delete();
-
+        if ($artist != null) {
+            $artist->delete();
+            return redirect()->route('user.show', $users->id)->with('success', ' Role of user was deleted. User id: '.$users->id);
+        }
 
         return redirect()->route('user.show', $users->id)->with('success', ' Role of user was deleted. User id: '.$users->id);
     }
