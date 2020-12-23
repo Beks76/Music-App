@@ -24,13 +24,13 @@
                                 @if ($album_id->contains($song->id))
                                     <tr>
                                         <td class="text-center">{{ $song->id }}</td>
-                                        <td>{{ $song->url }}</td>
+                                        <td>{{ $song->name }}</td>
                                         <td class="d-sm-flex justify-content-right">
 
-                                            <a href="{{route('album.edit', $song->id)}}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm mr-4" data-original-title="" title="">
+                                            <a href="{{route('song.edit', $song->id)}}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm mr-4" data-original-title="" title="">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <form action="{{route('album.destroy', $song->id)}}" method="POST">
+                                            <form action="{{route('song.destroy', $song->id)}}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
 

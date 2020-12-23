@@ -80,6 +80,9 @@ Route::get('/role/{role}/edit', [RoleController::class, 'edit'])->middleware(['a
 Route::get('/song', [SongController::class, 'index'])->middleware(['auth', 'auth.admin'])->name('song.index');
 Route::post('/song', [SongController::class, 'store'])->middleware('auth')->name('song.store');
 Route::get('/song/create', [SongController::class, 'create'])->middleware(['auth', 'auth.admin'])->name('song.create');
+Route::patch('/song/{song}', [SongController::class, 'update'])->middleware('auth')->name('song.update');
+Route::delete('/song/{song}', [SongController::class, 'destroy'])->middleware('auth')->name('song.destroy');
+Route::get('/song/{song}/edit', [SongController::class, 'edit'])->middleware('auth')->name('song.edit');
 
 Route::redirect('/', '/home');
 Route::resource('/home', HomeController::class);

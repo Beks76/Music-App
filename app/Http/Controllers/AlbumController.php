@@ -28,7 +28,8 @@ class AlbumController extends Controller
     {
         $albums = Album::where('genre_id', $genre->id)->get();
         $genres = Genre::all();
-        return view('album.index', compact(['albums', 'genres']));
+        $users = User::all();
+        return view('album.index', compact(['albums', 'genres', 'users']));
     }
 
     /**

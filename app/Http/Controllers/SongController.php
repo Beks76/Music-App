@@ -48,4 +48,27 @@ class SongController extends Controller
 
     }
 
+    public function edit($id)
+    {
+        $song = Song::find($id);
+        $albums = Album::all();
+        $users = Role::find(3)->users()->get();
+        return view('song.edit', compact(['albums', 'song', 'users']));
+    }
+
+    public function destroy($id)
+    {
+        $song = Song::find($id);
+        $song->delete();
+
+        return redirect()->route('song.index')->with('success', ' Song was deleted successfully with ID: '.$id);
+    }
+
+    public function update(Request $request, $id)
+    {   
+        $song = Song::find($id);
+        $song->update($request->only('name', 'artist', 'album', 'song'));
+        return redirect()->route('song.index')->with('success', ' Song was updated successfully with ID: '.$id);
+    }
+
 }

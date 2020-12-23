@@ -26,16 +26,16 @@
                             @foreach($songs as $song)
                                 <tr>
                                     <td class="text-center">{{ $song->id }}</td>
-                                    <td>{{ $song->url }}</td>
+                                    <td>{{ $song->name }}</td>
                                     <td class="d-sm-flex justify-content-right">
-                                        <a href="{{route('album.show', $song->id)}}" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
+                                        <a href="{{route('album.show', $song->album->id )}}" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
                                             <i class="material-icons">song</i>
                                         </a>
 
-                                        <a href="{{route('album.edit', $song->id)}}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
+                                        <a href="{{route('song.edit', $song->id) }}" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
                                             <i class="material-icons">edit</i>
                                         </a>
-                                        <form action="{{route('album.destroy', $song->id)}}" method="POST">
+                                        <form action="{{route('song.destroy', $song->id)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
 
